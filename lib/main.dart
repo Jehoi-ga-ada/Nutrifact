@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:nutrifact/screens/home_screen.dart';
 import 'package:nutrifact/screens/splash_screen.dart';
 
 void main() => runApp(const MyApp());

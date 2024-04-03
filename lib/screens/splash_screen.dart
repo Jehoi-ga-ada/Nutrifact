@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nutrifact/screens/home_screen.dart';
+// import 'package:nutrifact/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,13 +17,13 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
   
-    Future.delayed(const Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
-        ),
-      );
-    });
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   Navigator.of(context).pushReplacement(
+    //     MaterialPageRoute(
+    //       builder: (_) => const HomeScreen(),
+    //     ),
+    //   );
+    // });
   }
 
   @override
@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen>
       body: Container(
         width: double.infinity,
         decoration: const BoxDecoration(
-          color: Colors.white,
+          color: Color.fromRGBO(254, 109, 2, 1),
         ),
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -48,13 +48,13 @@ class _SplashScreenState extends State<SplashScreen>
               alignment: Alignment.bottomCenter,
               children: [
                 Image(
-                  image: AssetImage('assets/splash_logo.png'),
+                  image: AssetImage('assets/splash_white_logo.png'),
                   width: 338,
                 ),
                 Text(
                   'NutriFact',
                   style: TextStyle(
-                    color: Color.fromRGBO(254, 109, 2, 1),
+                    color: Colors.white,
                     fontSize: 40,
                     fontWeight: FontWeight.w700,
                     fontFamily: 'Mulish',
@@ -65,9 +65,10 @@ class _SplashScreenState extends State<SplashScreen>
             Text(
               'choose better, eat better',
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontFamily: 'Mulish',
                 fontSize: 23,
+                fontWeight: FontWeight.w200,
               ),
             ),
             SizedBox(height: 70),

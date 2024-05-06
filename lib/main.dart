@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nutrifact/screens/profile_form1.dart';
 // import 'package:nutrifact/screens/home_screen.dart';
 import 'package:nutrifact/screens/splash_screen.dart';
 
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: Profile11(),
     );
   }
 }

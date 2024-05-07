@@ -65,7 +65,7 @@
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Tell us more text
-              Text(
+              const Text(
                 'Tell us more!',
                 style: TextStyle(
                   color: Colors.orange, // Set text color to orange

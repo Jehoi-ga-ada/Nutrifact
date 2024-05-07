@@ -22,6 +22,11 @@
 
     bool isMaleChecked = false;
     bool isFemaleChecked = false;
+    bool isAct1 = false;
+    bool isAct2 = false;
+    bool isAct3 = false;
+    bool isAct4 = false;
+
     class Profile11 extends StatefulWidget {
       const Profile11({Key? key}) : super(key: key);
 
@@ -64,18 +69,19 @@
                 'Tell us more!',
                 style: TextStyle(
                   color: Colors.orange, // Set text color to orange
-                  fontSize: 25, // Adjust font size as needed
+                  fontSize: 34, // Adjust font size as needed
                   fontWeight: FontWeight.w700,
                   fontFamily: 'Mulish',
                 ),
               ),
-              SizedBox(height: 0.003 * MediaQuery.of(context).size.height), // Spacer between "Tell us more!" and "So we can know you better."
+              SizedBox(height: 0.0000001 * MediaQuery.of(context).size.height), // Spacer between "Tell us more!" and "So we can know you better."
 
               // Subtext
               Text(
                 'So we can know you better.',
                 style: TextStyle(
-                  fontSize: 14, // Adjust font size as needed
+                  fontSize: 18, // Adjust font size as needed
+                  color: Colors.yellow[700],
                   fontWeight: FontWeight.w400,
                   fontFamily: 'Mulish',
                 ),
@@ -87,7 +93,7 @@
 
         Positioned(
           left: 0.09 * MediaQuery.of(context).size.width,
-          top: 0.21 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.23 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -96,8 +102,9 @@
                 'Name',
                 style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 1), // Set text color to your preference
-                  fontSize: 18, // Adjust font size as needed
-                  fontWeight: FontWeight.w400,
+                  fontSize: 15, // Adjust font size as needed
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Mulish',
                 ),
               ),
             ],
@@ -107,7 +114,7 @@
 
         Positioned(
           left: 0.07 * MediaQuery.of(context).size.width,
-          top: 0.25 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.265 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: Container(
             width: 0.83 * MediaQuery.of(context).size.width, // Adjust the width of the input box
             height: 0.05 * MediaQuery.of(context).size.height, // Adjust the height of the input box
@@ -129,7 +136,7 @@
 
         Positioned(
           left: 0.09 * MediaQuery.of(context).size.width,
-          top: 0.31 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.325 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -138,8 +145,9 @@
                 'Height',
                 style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 1), // Set text color to your preference
-                  fontSize: 18, // Adjust font size as needed
-                  fontWeight: FontWeight.w400,
+                  fontSize: 15, // Adjust font size as needed
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Mulish',
                 ),
               ),
             ],
@@ -149,7 +157,7 @@
 
         Positioned(
           left: 0.07 * MediaQuery.of(context).size.width,
-          top: 0.35 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.36 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: Container(
             width: 0.37 * MediaQuery.of(context).size.width, // Adjust the width of the input box
             height: 0.05 * MediaQuery.of(context).size.height, // Adjust the height of the input box
@@ -171,7 +179,7 @@
 
         Positioned(
           left: 0.52 * MediaQuery.of(context).size.width,
-          top: 0.31 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.325 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -180,8 +188,9 @@
                 'Weight',
                 style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 1), // Set text color to your preference
-                  fontSize: 18, // Adjust font size as needed
-                  fontWeight: FontWeight.w400,
+                  fontSize: 15, // Adjust font size as needed
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Mulish',
                 ),
               ),
             ],
@@ -191,7 +200,7 @@
 
         Positioned(
           left: 0.5 * MediaQuery.of(context).size.width,
-          top: 0.35 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.36 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: Container(
             width: 0.4 * MediaQuery.of(context).size.width, // Adjust the width of the input box
             height: 0.05 * MediaQuery.of(context).size.height, // Adjust the height of the input box
@@ -213,7 +222,7 @@
 
         Positioned(
           left: 0.09 * MediaQuery.of(context).size.width,
-          top: 0.417 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.42 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -222,8 +231,9 @@
                 'Age',
                 style: TextStyle(
                   color: Color.fromRGBO(0, 0, 0, 1), // Set text color to your preference
-                  fontSize: 18, // Adjust font size as needed
-                  fontWeight: FontWeight.w400,
+                  fontSize: 15, // Adjust font size as needed
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Mulish',
                 ),
               ),
             ],
@@ -233,7 +243,7 @@
 
         Positioned(
           left: 0.07 * MediaQuery.of(context).size.width,
-          top: 0.46 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.456 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
           child: Container(
             width: 0.37 * MediaQuery.of(context).size.width, // Adjust the width of the input box
             height: 0.05 * MediaQuery.of(context).size.height, // Adjust the height of the input box
@@ -255,27 +265,7 @@
 
         Positioned(
           left: 0.52 * MediaQuery.of(context).size.width,
-          top: 0.417 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Additional text box
-              Text(
-                'Sex',
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1), // Set text color to your preference
-                  fontSize: 18, // Adjust font size as needed
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-            ],
-          ),
-        ),
-        // Color: Color(0xFFD47D0A);
-
-        Positioned(
-          left: 0.52 * MediaQuery.of(context).size.width,
-          top: 0.417 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.421 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -284,8 +274,9 @@
                   'Sex',
                   style: TextStyle(
                     color: Colors.black, // Use containerColor to set text color
-                    fontSize: 18, // Adjust font size as needed
-                    fontWeight: FontWeight.w400,
+                    fontSize: 15, // Adjust font size as needed
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Mulish',
                   ),
                 ),
               ],
@@ -294,7 +285,7 @@
 
        Positioned(
         left: 0.5 * MediaQuery.of(context).size.width,
-        top: 0.46 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+        top: 0.456 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
         child: GestureDetector(
           onTap: () {
             setState(() {
@@ -308,13 +299,13 @@
             decoration: BoxDecoration(
               color: isMaleChecked ? Colors.orange : Colors.transparent, // Set color based on state
               borderRadius: BorderRadius.circular(15), // Set circular border radius
-              border: Border.all(color: Colors.grey), // Set border color
+              border: Border.all(color: isMaleChecked ? Colors.orange : Colors.grey), // Set border color
             ),
-            child: const Center(
+            child: Center(
               child: Text(
                 'M', // Letter "M" inside the container
                 style: TextStyle(
-                  color: Colors.black, // Set default text color
+                  color: isMaleChecked ? Colors.white : Colors.grey, // Set default text color
                   fontSize: 20, // Adjust font size as needed
                 ),
               ),
@@ -325,7 +316,7 @@
 
       Positioned(
         left: 0.71 * MediaQuery.of(context).size.width,
-        top: 0.46 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+        top: 0.456 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
         child: GestureDetector(
           onTap: () {
             setState(() {
@@ -337,15 +328,15 @@
             width: 0.19 * MediaQuery.of(context).size.width, // Adjust the width of the input box
             height: 0.05 * MediaQuery.of(context).size.height, // Adjust the height of the input box
             decoration: BoxDecoration(
-              color: isFemaleChecked ? Colors.orange : Colors.transparent, // Set color based on state
-              borderRadius: BorderRadius.circular(15), // Set circular border radius
-              border: Border.all(color: Colors.grey), // Set border color
+            color: isFemaleChecked ? Colors.orange : Colors.transparent, // Set color based on state
+            borderRadius: BorderRadius.circular(15), // Set circular border radius
+            border: Border.all(color: isFemaleChecked ? Colors.orange : Colors.grey), // Set border color
             ),
-            child: const Center(
+            child: Center(
               child: Text(
                 'F', // Letter "F" inside the container
                 style: TextStyle(
-                  color: Colors.black, // Set default text color
+                  color: isFemaleChecked ? Colors.white : Colors.grey, // Set default text color
                   fontSize: 20, // Adjust font size as needed
                 ),
               ),
@@ -354,6 +345,169 @@
         ),
       ),
         
+
+      Positioned(
+          left: 0.09 * MediaQuery.of(context).size.width,
+          top: 0.5225 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          child: const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Additional text box
+              Text(
+                'Activity Level',
+                style: TextStyle(
+                  color: Color.fromRGBO(0, 0, 0, 1), // Set text color to your preference
+                  fontSize: 15, // Adjust font size as needed
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Mulish',
+                ),
+              ),
+            ],
+          ),
+        ),
+
+        Positioned(
+          left: 0.07 * MediaQuery.of(context).size.width,
+          top: 0.562 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                isAct1 = true;
+                isAct2 = false;
+                isAct3 = false;
+                isAct4 = false;
+              });
+            },
+            child: Container(
+              width: 0.4 * MediaQuery.of(context).size.width, // Adjust the width of the input box
+              height: 0.08 * MediaQuery.of(context).size.height, // Adjust the height of the input box to fit two lines
+              decoration: BoxDecoration(
+                color: isAct1 ? Colors.orange : Colors.transparent, // Set color based on state
+                borderRadius: BorderRadius.circular(15), // Set circular border radius
+                border: Border.all(color: isAct1 ? Colors.orange : Colors.grey), // Set border color
+              ),
+              child: Center(
+                child: Text(
+                  'Sedentary\nlittle to no exercise', // Text with a new line for second line
+                  textAlign: TextAlign.center, // Align text to the center
+                  softWrap: true, // Allow text to wrap if it exceeds container width
+                  style: TextStyle(
+                    color: isAct1 ? Colors.white : Colors.grey, // Set default text color
+                    fontSize: 12, // Adjust font size as needed
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+
+        Positioned(
+          left: 0.5 * MediaQuery.of(context).size.width,
+          top: 0.562 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                isAct1 = false;
+                isAct2 = true;
+                isAct3 = false;
+                isAct4 = false;
+              });
+            },
+            child: Container(
+              width: 0.4 * MediaQuery.of(context).size.width, // Adjust the width of the input box
+              height: 0.08 * MediaQuery.of(context).size.height, // Adjust the height of the input box to fit two lines
+              decoration: BoxDecoration(
+                color: isAct2 ? Colors.orange : Colors.transparent, // Set color based on state
+                borderRadius: BorderRadius.circular(15), // Set circular border radius
+                border: Border.all(color: isAct2 ? Colors.orange : Colors.grey), // Set border color
+              ),
+              child: Center(
+                child: Text(
+                  'Lightly active\n(1-2 times a week)', // Text with a new line for second line
+                  textAlign: TextAlign.center, // Align text to the center
+                  softWrap: true, // Allow text to wrap if it exceeds container width
+                  style: TextStyle(
+                    color: isAct2 ? Colors.white : Colors.grey, // Set default text color
+                    fontSize: 12, // Adjust font size as needed
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+
+        Positioned(
+          left: 0.07 * MediaQuery.of(context).size.width,
+          top: 0.66 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                isAct1 = false;
+                isAct2 = false;
+                isAct3 = true;
+                isAct4 = false;
+              });
+            },
+            child: Container(
+              width: 0.4 * MediaQuery.of(context).size.width, // Adjust the width of the input box
+              height: 0.08 * MediaQuery.of(context).size.height, // Adjust the height of the input box to fit two lines
+              decoration: BoxDecoration(
+                color: isAct3 ? Colors.orange : Colors.transparent, // Set color based on state
+                borderRadius: BorderRadius.circular(15), // Set circular border radius
+                border: Border.all(color: isAct3 ? Colors.orange : Colors.grey), // Set border color
+              ),
+              child: Center(
+                child: Text(
+                  'Moderately active\n(3-5 times a week)', // Text with a new line for second line
+                  textAlign: TextAlign.center, // Align text to the center
+                  softWrap: true, // Allow text to wrap if it exceeds container width
+                  style: TextStyle(
+                    color: isAct3 ? Colors.white : Colors.grey, // Set default text color
+                    fontSize: 12, // Adjust font size as needed
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+
+        Positioned(
+          left: 0.5 * MediaQuery.of(context).size.width,
+          top: 0.66 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                isAct1 = false;
+                isAct2 = false;
+                isAct3 = false;
+                isAct4 = true;
+              });
+            },
+            child: Container(
+              width: 0.4 * MediaQuery.of(context).size.width, // Adjust the width of the input box
+              height: 0.08 * MediaQuery.of(context).size.height, // Adjust the height of the input box to fit two lines
+              decoration: BoxDecoration(
+                color: isAct4 ? Colors.orange : Colors.transparent, // Set color based on state
+                borderRadius: BorderRadius.circular(15), // Set circular border radius
+                border: Border.all(color: isAct4 ? Colors.orange : Colors.grey), // Set border color
+              ),
+              child: Center(
+                child: Text(
+                  'Very active\n(6-7 times a week)', // Text with a new line for second line
+                  textAlign: TextAlign.center, // Align text to the center
+                  softWrap: true, // Allow text to wrap if it exceeds container width
+                  style: TextStyle(
+                    color: isAct4 ? Colors.white : Colors.grey, // Set default text color
+                    fontSize: 12, // Adjust font size as needed
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
 
       ],
     ),

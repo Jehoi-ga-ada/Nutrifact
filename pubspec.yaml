@@ -82,6 +82,10 @@ flutter:
     - assets/home_screen/image.png
     - assets/home_screen/photo_ins.png
     - assets/home_screen/flash_off.png
+    #summary_screen
+    - assets/summary_screen/exclamation_mark.png
+    - assets/summary_screen/warning_sign.png
+    - assets/summary_screen/save_summary.png
     # sidebar
     - assets/sidebar/back_button.png
     - assets/sidebar/watermark.png
@@ -104,8 +108,15 @@ flutter:
     - family: Mulish
       fonts:
         - asset: fonts/Mulish-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Mulish-Bold.ttf
           weight: 700
+        - asset: fonts/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Mulish-Medium.ttf
+          weight: 500
         - asset: fonts/Mulish-Regular.ttf
+          weight: 400
   # fonts:
   #   - family: Schyler
   #     fonts:

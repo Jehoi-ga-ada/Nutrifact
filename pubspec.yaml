@@ -81,7 +81,15 @@ flutter:
     - assets/home_screen/history.png
     - assets/home_screen/image.png
     - assets/home_screen/photo_ins.png
-    
+    # profile
+    - assets/profile/back.png
+    - assets/profile/edit.png
+    - assets/profile/date.png
+    - assets/profile/gender.png
+    - assets/profile/height.png
+    - assets/profile/weight.png
+
+
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
@@ -101,8 +109,15 @@ flutter:
     - family: Mulish
       fonts:
         - asset: fonts/Mulish-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Mulish-Bold.ttf
           weight: 700
+        - asset: fonts/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Mulish-Medium.ttf
+          weight: 500
         - asset: fonts/Mulish-Regular.ttf
+          weight: 400
   # fonts:
   #   - family: Schyler
   #     fonts:

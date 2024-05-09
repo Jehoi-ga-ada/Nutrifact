@@ -38,8 +38,24 @@ class SummaryState extends State<SummaryScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.close), // Icon for exit/close
+                    onPressed: () => Navigator.of(context).pop(), // Close or go back
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.save), // Icon for save
+                    onPressed: () {
+                      // Implement save functionality
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
               Text(
-                '$productName',
+                productName,
                 style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 24,

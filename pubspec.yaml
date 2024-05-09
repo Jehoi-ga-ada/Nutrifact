@@ -86,6 +86,7 @@ flutter:
     - assets/summary_screen/exclamation_mark.png
     - assets/summary_screen/warning_sign.png
     - assets/summary_screen/save_summary.png
+    - assets/summary_screen/exit_button.png
     # sidebar
     - assets/sidebar/back_button.png
     - assets/sidebar/watermark.png

@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:nutrifact/screens/sidebar.dart';
 import 'package:camera/camera.dart';
 import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<File> imagesList = [];
   bool isFlashOn = false;
   bool isRearCamera = true;
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
 
   Future<File> saveImage(XFile image) async {
     final downloadPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_PICTURES);
@@ -77,17 +78,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.height;
     return Scaffold(
+      key: _key,
+      drawer: SideBar(),
 
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
-        shape: const CircleBorder(),
-        onPressed: takePicture,
-        // child: Icon(
-        //   Icons.camera_alt, 
-        //   size: 40, 
-        //   color: Colors.black87,
-        // ),
+      floatingActionButton: SizedBox(
+        height: 75,
+        width: 75,
+        child: FloatingActionButton(
+          backgroundColor: Colors.transparent,
+          shape: const CircleBorder(),
+          onPressed: takePicture,
+          child: Image.asset(
+            'assets/home_screen/capture_button.png'
+          ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
 
@@ -114,11 +121,33 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             }
           ),
+
+          // Dark filter for camera 
+          Positioned.fill(
+            child: Opacity(
+              opacity: 0.2,
+              child: Container(
+                color: const Color(0xFF000000),
+              ),
+            ),
+          ),
+
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.only(top: 0.15 * height),
+                child: Image.asset('assets/home_screen/photo_ins.png'),
+              ),
+            ),
+          ),
+
+          // Flash Icon
           SafeArea(
             child: Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 5, top:10),
+                padding: EdgeInsets.only(right: 0.03*width, top:0.02*height),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -128,26 +157,76 @@ class _HomeScreenState extends State<HomeScreen> {
                           isFlashOn = !isFlashOn;
                         });
                       },
-                      child: Container(
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(50, 0, 0, 0),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: isFlashOn 
-                            ? const Icon(
-                                Icons.flash_on,
-                                color: Colors.white,
-                                size: 30,
-                              )
-                            : const Icon(
-                                Icons.flash_off,
-                                color: Colors.white,
-                                size: 30,
-                              ),
-                        )
-                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: isFlashOn 
+                          ? Image.asset('assets/home_screen/flash_on.png')
+                          : Image.asset('assets/home_screen/flash_off.png'),
+                      )
+                    ),
+                  ],
+                ),
+              )
+            ),
+          ),
+
+          // Burger Icon
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 0.03*width, top:0.02*height),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      onTap: () => _key.currentState!.openDrawer(),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Image.asset('assets/home_screen/burger.png'),
+                      )
+                    ),
+                  ],
+                ),
+              )
+            ),
+          ),
+
+          // Image Icon
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(right: 0.6*width, bottom:0.02*height),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Image.asset('assets/home_screen/image.png'),
+                      )
+                    ),
+                  ],
+                ),
+              )
+            ),
+          ),
+
+          // History Icon
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(left: 0.6*width, bottom:0.02*height),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Image.asset('assets/home_screen/history.png'),
+                      )
                     ),
                   ],
                 ),
@@ -156,7 +235,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      
     );
   }
 }

@@ -83,6 +83,8 @@ flutter:
     - assets/home_screen/photo_ins.png
     #summary_screen
     - assets/summary_screen/exclamation_mark.png
+    - assets/summary_screen/warning_sign.png
+    - assets/summary_screen/save_summary.png
     
   # assets:
   #   - images/a_dot_burr.jpeg

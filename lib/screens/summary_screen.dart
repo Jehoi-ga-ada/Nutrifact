@@ -42,14 +42,22 @@ class SummaryState extends State<SummaryScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.close), // Icon for exit/close
                     onPressed: () => Navigator.of(context).pop(), // Close or go back
+                    icon: Container(
+                      width: 25, // Specify width
+                      height: 25, // Specify height
+                      child: Image.asset('assets/summary_screen/exit_button.png', fit: BoxFit.cover),
+                    ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.save), // Icon for save
                     onPressed: () {
                       // Implement save functionality
                     },
+                    icon: Container(
+                      width: 25, // Specify width
+                      height: 25, // Specify height
+                      child: Image.asset('assets/summary_screen/save_summary.png', fit: BoxFit.cover),
+                    ),
                   ),
                 ],
               ),

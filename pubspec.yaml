@@ -81,11 +81,14 @@ flutter:
     - assets/home_screen/history.png
     - assets/home_screen/image.png
     - assets/home_screen/photo_ins.png
+    - assets/home_screen/flash_off.png
     #summary_screen
     - assets/summary_screen/exclamation_mark.png
     - assets/summary_screen/warning_sign.png
     - assets/summary_screen/save_summary.png
-    
+    # sidebar
+    - assets/sidebar/back_button.png
+    - assets/sidebar/watermark.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

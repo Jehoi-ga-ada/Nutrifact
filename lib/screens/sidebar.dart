@@ -57,7 +57,7 @@ class _SideBarState extends State<SideBar> {
                       ),
                     ),
                   ),
-                  currentAccountPictureSize: Size.square(90),
+                  currentAccountPictureSize: const Size.square(90),
                   decoration: const BoxDecoration(
                     color: Colors.transparent,
                     border: null,

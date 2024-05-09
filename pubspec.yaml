@@ -81,7 +81,10 @@ flutter:
     - assets/home_screen/history.png
     - assets/home_screen/image.png
     - assets/home_screen/photo_ins.png
-    
+    - assets/home_screen/flash_off.png
+    # sidebar
+    - assets/sidebar/back_button.png
+    - assets/sidebar/watermark.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

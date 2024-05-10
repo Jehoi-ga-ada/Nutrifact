@@ -35,7 +35,7 @@ class _SideBarState extends State<SideBar> {
                 ),
                 
                 Container(
-                  color: Colors.white,
+                  color: Colors.transparent,
                   padding: EdgeInsets.only(
                     top: 0.02*height,
                     bottom: 0.01*height, 

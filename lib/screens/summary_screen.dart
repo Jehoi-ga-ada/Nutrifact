@@ -28,40 +28,44 @@ class SummaryState extends State<SummaryScreen> {
 
   final String productName = "Häagen-Dazs Ice Cream";
 
+  final int calPerServing = 330;
+
+  final int calPerContainer = 870;
+
   @override
 
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 75, left: 30, right: 30),
+          padding: EdgeInsets.only(top: 50, left: 30, right: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  IconButton(
-                    onPressed: () => Navigator.of(context).pop(), // Close or go back
-                    icon: Container(
-                      width: 25, // Specify width
-                      height: 25, // Specify height
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Container(
+                      width: 26,
+                      height: 26,
                       child: Image.asset('assets/summary_screen/exit_button.png', fit: BoxFit.cover),
                     ),
                   ),
-                  IconButton(
-                    onPressed: () {
+                  GestureDetector(
+                    onTap: () {
                       // Implement save functionality
                     },
-                    icon: Container(
-                      width: 25, // Specify width
-                      height: 25, // Specify height
+                    child: Container(
+                      width: 25,
+                      height: 25,
                       child: Image.asset('assets/summary_screen/save_summary.png', fit: BoxFit.cover),
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 19),
               Text(
                 productName,
                 style: TextStyle(
@@ -72,9 +76,9 @@ class SummaryState extends State<SummaryScreen> {
                 ),
               ),
               SizedBox(height: 30),  // Adding space between title and next section
-              calorieRow(),
+              calorieRow(calPerServing, calPerContainer),
               SizedBox(height: 30),
-              nutritionWarnings(2),
+              nutritionWarnings(2), //passing parameter belom ada utk nutrition contents
               SizedBox(height: 35),
               allergenBox(context, ['milk']),  // Displays warning with these allergens
               SizedBox(height: 25),
@@ -102,15 +106,15 @@ class SummaryState extends State<SummaryScreen> {
   }
 
 
-  Widget calorieRow() {
+  Widget calorieRow(int calPerServing, int calPerContainer) { //nnti disini hrus bs diedit parameternya :1
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween, // This will space the elements evenly across the horizontal axis
       children: [
-        calorieInfo('330', 'cal', 'per serving'), // Calorie info for per serving
+        calorieInfo(calPerServing, 'cal', 'per serving'), // Calorie info for per serving
         verticalDivider(),
         percentageInfo(20), // Custom widget for daily needs with formatted text
         verticalDivider(),
-        calorieInfo('870', 'cal', 'per container'), // Total calories per container
+        calorieInfo(calPerContainer, 'cal', 'per container'), // Total calories per container
       ],
     );
   }
@@ -123,7 +127,7 @@ class SummaryState extends State<SummaryScreen> {
     );
   }
 
-  Widget calorieInfo(String number, String unit, String description) {
+  Widget calorieInfo(int number, String unit, String description) {
     return RichText(
       text: TextSpan(
         style: TextStyle(

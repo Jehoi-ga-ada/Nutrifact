@@ -28,7 +28,11 @@ class _SideBarState extends State<SideBar> {
                         top: 0.04 * height, 
                         bottom: 0.04 * height,
                       ),
-                      child: Image.asset('assets/sidebar/back_button.png'),
+                      child: Image.asset(
+                        'assets/sidebar/back_button.png',
+                        height: 30,
+                        width: 30,
+                      ),
                     ),
                     onTap: () => Navigator.pop(context),
                   ),
@@ -136,7 +140,9 @@ class _SideBarState extends State<SideBar> {
                   right: 0.035*width
                 ),
                 child: Image.asset(
-                "assets/sidebar/watermark.png"
+                "assets/sidebar/watermark.png",
+                height: 50,
+                width: 127,
                 ),
               ),
             )

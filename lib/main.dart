@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomeScreen(
-      //   cameras: cameras,
-      // ),
-      home: SummaryScreen(
-
+      home: HomeScreen(
+        cameras: cameras,
       ),
+      // home: SummaryScreen(
+
+      // ),
     );
   }
 }

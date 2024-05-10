@@ -160,8 +160,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(10),
                         child: isFlashOn 
-                          ? Image.asset('assets/home_screen/flash_on.png')
-                          : Image.asset('assets/home_screen/flash_off.png'),
+                          ? Image.asset(
+                            'assets/home_screen/flash_on.png',
+                            height: 28,
+                            width: 19,
+                          )
+                          : Image.asset(
+                            'assets/home_screen/flash_off.png',
+                            height: 28,
+                            width: 19,
+                          ),
                       )
                     ),
                   ],
@@ -183,7 +191,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: () => _key.currentState!.openDrawer(),
                       child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Image.asset('assets/home_screen/burger.png'),
+                        child: Image.asset(
+                          'assets/home_screen/burger.png',
+                          height: 30,
+                          width: 30,
+                        ),
                       )
                     ),
                   ],
@@ -204,7 +216,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     GestureDetector(
                       child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Image.asset('assets/home_screen/image.png'),
+                        child: Image.asset(
+                          'assets/home_screen/image.png',
+                          width: 30,
+                          height: 30,  
+                        ),
                       )
                     ),
                   ],
@@ -225,7 +241,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     GestureDetector(
                       child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: Image.asset('assets/home_screen/history.png'),
+                        child: Image.asset(
+                          'assets/home_screen/history.png',
+                          height: 31,
+                          width: 32,
+                        ),
                       )
                     ),
                   ],

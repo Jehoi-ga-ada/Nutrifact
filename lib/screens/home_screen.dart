@@ -1,9 +1,11 @@
 import 'dart:io';
+import 'package:nutrifact/screens/preview_screen.dart';
 import 'package:nutrifact/screens/sidebar.dart';
 import 'package:camera/camera.dart';
 import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
 import 'package:media_scanner/media_scanner.dart';
+import 'package:nutrifact/screens/summary_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -20,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   bool isFlashOn = false;
   bool isRearCamera = true;
   final GlobalKey<ScaffoldState> _key = GlobalKey();
+  bool nutritionLabelConfirmed = false;
+  bool ingredientsLabelConfirmed = false;
 
   Future<File> saveImage(XFile image) async {
     final downloadPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_PICTURES);
@@ -52,10 +56,43 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     final file = await saveImage(image);
-
+    
     setState(() {
       imagesList.add(file);
     });
+
+    if (mounted) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PreviewScreen(
+            imageFile: file,
+            onConfirm: () {
+              if (!nutritionLabelConfirmed) {
+                setState(() {
+                  nutritionLabelConfirmed = true;
+                });
+                Navigator.pop(context);
+              } else if (!ingredientsLabelConfirmed) {
+                setState(() {
+                  ingredientsLabelConfirmed = true;
+                });
+                Navigator.pushReplacement(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => SummaryScreen(),
+                  ),
+                );
+                setState(() {
+                  nutritionLabelConfirmed = false;
+                  ingredientsLabelConfirmed = false;
+                });
+              }
+            },
+          ),
+        ),
+      );
+    }
 
     MediaScanner.loadMedia(path: file.path);
   }
@@ -82,17 +119,20 @@ class _HomeScreenState extends State<HomeScreen> {
     final height = size.height;
     return Scaffold(
       key: _key,
-      drawer: SideBar(),
+      drawer: const SideBar(),
 
-      floatingActionButton: SizedBox(
-        height: 75,
-        width: 75,
-        child: FloatingActionButton(
-          backgroundColor: Colors.transparent,
-          shape: const CircleBorder(),
-          onPressed: takePicture,
-          child: Image.asset(
-            'assets/home_screen/capture_button.png'
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(bottom: 0.05 * height), // Adjust the bottom padding here
+        child: SizedBox(
+          height: 75,
+          width: 75,
+          child: FloatingActionButton(
+            backgroundColor: Colors.transparent,
+            shape: const CircleBorder(),
+            onPressed: takePicture,
+            child: Image.asset(
+              'assets/home_screen/capture_button.png'
+            ),
           ),
         ),
       ),
@@ -137,11 +177,17 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: EdgeInsets.only(top: 0.15 * height),
-                child: Image.asset(
+                child: nutritionLabelConfirmed? 
+                Image.asset(
+                  'assets/home_screen/photo_ing_ins.png',
+                  height: 68,
+                  width: 293,
+                )
+                : Image.asset(
                   'assets/home_screen/photo_ins.png',
                   height: 68,
                   width: 293,
-                ),
+                )
               ),
             ),
           ),
@@ -166,13 +212,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: isFlashOn 
                           ? Image.asset(
                             'assets/home_screen/flash_on.png',
-                            height: 28,
-                            width: 19,
+                            height: 30,
+                            width: 30,
                           )
                           : Image.asset(
                             'assets/home_screen/flash_off.png',
-                            height: 28,
-                            width: 19,
+                            height: 30,
+                            width: 30,
                           ),
                       )
                     ),
@@ -213,7 +259,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(right: 0.6*width, bottom:0.02*height),
+                padding: EdgeInsets.only(
+                  right: 0.6*width, 
+                  bottom:0.08*height
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -238,7 +287,10 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(left: 0.6*width, bottom:0.02*height),
+                padding: EdgeInsets.only(
+                  left: 0.6*width, 
+                  bottom:0.08*height
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [

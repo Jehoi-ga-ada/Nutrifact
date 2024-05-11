@@ -26,6 +26,8 @@
     bool isAct2 = false;
     bool isAct3 = false;
     bool isAct4 = false;
+    bool isTest = false;
+    bool isTest2 = false;
 
     class Profile11 extends StatefulWidget {
       const Profile11({Key? key}) : super(key: key);
@@ -243,13 +245,21 @@
 
         Positioned(
           left: 0.07 * MediaQuery.of(context).size.width,
-          top: 0.456 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
+          top: 0.456 * MediaQuery.of(context).size.height,
+          child: GestureDetector(
+          onTap: () {
+            setState(() {
+              isTest = true;
+              isMaleChecked = false;
+              isFemaleChecked = false;
+            });
+          }, // Adjust the top position for the additional text box
           child: Container(
             width: 0.37 * MediaQuery.of(context).size.width, // Adjust the width of the input box
             height: 0.05 * MediaQuery.of(context).size.height, // Adjust the height of the input box
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15), // Set circular border radius
-              border: Border.all(color: Colors.grey), // Set border color
+              border: Border.all(color: isTest ? Colors.orange : Colors.grey), // Set border color
             ),
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -259,6 +269,7 @@
                 ),
               ),
             ),
+          ),
           ),
         ),
 
@@ -291,6 +302,7 @@
             setState(() {
               isMaleChecked = true;
               isFemaleChecked = false;
+              isTest = false;
             });
           },
           child: Container(
@@ -322,6 +334,7 @@
             setState(() {
               isMaleChecked = false;
               isFemaleChecked = true;
+              isTest = false;
             });
           },
           child: Container(

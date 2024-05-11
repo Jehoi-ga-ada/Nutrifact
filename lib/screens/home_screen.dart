@@ -137,7 +137,11 @@ class _HomeScreenState extends State<HomeScreen> {
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: EdgeInsets.only(top: 0.15 * height),
-                child: Image.asset('assets/home_screen/photo_ins.png'),
+                child: Image.asset(
+                  'assets/home_screen/photo_ins.png',
+                  height: 68,
+                  width: 293,
+                ),
               ),
             ),
           ),

@@ -81,6 +81,7 @@ flutter:
     - assets/home_screen/history.png
     - assets/home_screen/image.png
     - assets/home_screen/photo_ins.png
+    - assets/home_screen/photo_ing_ins.png
     - assets/home_screen/flash_off.png
     #summary_screen
     - assets/summary_screen/exclamation_mark.png
@@ -89,6 +90,9 @@ flutter:
     # sidebar
     - assets/sidebar/back_button.png
     - assets/sidebar/watermark.png
+    # preview_screen
+    - assets/preview_screen/ok_button.png
+    - assets/preview_screen/back_button.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

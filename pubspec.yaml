@@ -62,7 +62,7 @@ flutter:
   assets:
     - assets/splash_logo.png
     - assets/splash_white_logo.png
-    - assets/arrow-left-1.png
+    - assets/ProfileFormAsset/arrow-left-1.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

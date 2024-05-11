@@ -266,7 +266,7 @@
         Positioned(
           left: 0.52 * MediaQuery.of(context).size.width,
           top: 0.421 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
-            child: Column(
+            child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Additional text box

@@ -158,9 +158,13 @@ class _ProfileFormState extends State<ProfileForm> {
                   child: TextField(
                     decoration: InputDecoration(
                       // border: InputBorder.none, // Hide input box border
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
-                        borderSide: BorderSide(width: 1, color: isName ? Colors.orange : Colors.grey)
+                     enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.grey),
+                            ),
+                      focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.orange),
                       ),
                       ),
                          inputFormatters: <TextInputFormatter>[
@@ -222,9 +226,13 @@ class _ProfileFormState extends State<ProfileForm> {
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                              borderSide: BorderSide(width: 15, color: isHeight ? Colors.orange : Colors.grey)
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.grey),
+                            ),
+                      focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.orange),
                             ),
                           ),
                            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
@@ -273,10 +281,14 @@ class _ProfileFormState extends State<ProfileForm> {
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                              borderSide: BorderSide(width: 10, color: isWeight ? Colors.orange : Colors.grey)
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.grey),
                             ),
+                      focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.orange),
+                          ),
                           ),
                            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[
@@ -335,10 +347,14 @@ class _ProfileFormState extends State<ProfileForm> {
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                              borderSide: BorderSide(width: 1, color: isAge ? Colors.orange : Colors.grey)
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.grey),
                             ),
+                      focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(25.0),
+                              borderSide:  BorderSide(color: Colors.orange),
+                          ),
                           ),
                            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[

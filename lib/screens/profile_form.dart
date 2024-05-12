@@ -81,7 +81,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   const Text(
                     'Tell us more!',
                     style: TextStyle(
-                      color: Colors.orange, // Set text color to orange
+                      color:const Color(0xFFFEA72D), // Set text color to orange
                       fontSize: 34, // Adjust font size as needed
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Mulish',
@@ -164,11 +164,12 @@ class _ProfileFormState extends State<ProfileForm> {
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.orange),
+                              borderSide:  BorderSide(color: Color(0xFFFEA72D)),
                       ),
+                      contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 4),
                       ),
                          inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')), // Allow only digits
+                            FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')), // Allow only digits
                           ],
                     ),
                   ),
@@ -232,8 +233,9 @@ class _ProfileFormState extends State<ProfileForm> {
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.orange),
+                              borderSide:  BorderSide(color:  Color(0xFFFEA72D)),
                             ),
+                            contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                           ),
                            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[
@@ -287,8 +289,9 @@ class _ProfileFormState extends State<ProfileForm> {
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.orange),
+                              borderSide:  BorderSide(color:  Color(0xFFFEA72D)),
                           ),
+                          contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                           ),
                            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[
@@ -344,7 +347,7 @@ class _ProfileFormState extends State<ProfileForm> {
                         border: Border.all(color: isAge? Colors.white : Colors.white),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(horizontal: 5.0),
                         child: TextField(
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
@@ -353,12 +356,13 @@ class _ProfileFormState extends State<ProfileForm> {
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.orange),
+                              borderSide:  BorderSide(color:  Color(0xFFFEA72D)),
                           ),
+                          contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5), // Adjust padding as needed
                           ),
                            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')), // Allow only digits
+                                 FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')),
                               ],
                         ),
                       ),
@@ -398,7 +402,7 @@ class _ProfileFormState extends State<ProfileForm> {
                             width: 0.175 * MediaQuery.of(context).size.width,
                             height: 0.05 * MediaQuery.of(context).size.height,
                             decoration: BoxDecoration(
-                              color: isMaleChecked ? Colors.orange : Colors.transparent,
+                              color: isMaleChecked ?  Color(0xFFFEA72D) : Colors.transparent,
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(color: isMaleChecked ? Colors.orange : Colors.grey),
                             ),
@@ -425,9 +429,9 @@ class _ProfileFormState extends State<ProfileForm> {
                             width: 0.175 * MediaQuery.of(context).size.width,
                             height: 0.05 * MediaQuery.of(context).size.height,
                             decoration: BoxDecoration(
-                              color: isFemaleChecked ? Colors.orange : Colors.transparent,
+                              color: isFemaleChecked ?  Color(0xFFFEA72D) : Colors.transparent,
                               borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: isFemaleChecked ? Colors.orange : Colors.grey),
+                              border: Border.all(color: isFemaleChecked ?  Color(0xFFFEA72D) : Colors.grey),
                             ),
                             child: Center(
                               child: Text(
@@ -499,9 +503,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct1 ? Colors.orange : Colors.transparent,
+                      color: isAct1 ?  Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct1 ? Colors.orange : Colors.grey),
+                      border: Border.all(color: isAct1 ?  Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(
@@ -535,9 +539,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct2 ? Colors.orange : Colors.transparent,
+                      color: isAct2 ?  Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct2 ? Colors.orange : Colors.grey),
+                      border: Border.all(color: isAct2 ?  Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(
@@ -581,9 +585,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct3 ? Colors.orange : Colors.transparent,
+                      color: isAct3 ?  Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct3 ? Colors.orange : Colors.grey),
+                      border: Border.all(color: isAct3 ?  Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(
@@ -617,9 +621,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct4 ? Colors.orange : Colors.transparent,
+                      color: isAct4 ?  Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct4 ? Colors.orange : Colors.grey),
+                      border: Border.all(color: isAct4 ?  Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(

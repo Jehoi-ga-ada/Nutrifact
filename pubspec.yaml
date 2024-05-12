@@ -40,6 +40,7 @@ dependencies:
   gap: ^3.0.1
   external_path: ^1.0.3
   media_scanner: ^2.1.0
+  flutter_svg: ^1.0.3 
 
 flutter_native_splash:
   color: '#fe6d02'
@@ -83,10 +84,11 @@ flutter:
     - assets/home_screen/photo_ins.png
     - assets/home_screen/flash_off.png
     #summary_screen
-    - assets/summary_screen/exclamation_mark.png
-    - assets/summary_screen/warning_sign.png
-    - assets/summary_screen/save_summary.png
-    - assets/summary_screen/exit_button.png
+    - assets/summary_screen/exclamation_mark.svg
+    - assets/summary_screen/warning_sign.svg
+    - assets/summary_screen/save_summary.svg
+    - assets/summary_screen/saved_summary.svg
+    - assets/summary_screen/exit_button.svg
     # sidebar
     - assets/sidebar/back_button.png
     - assets/sidebar/watermark.png

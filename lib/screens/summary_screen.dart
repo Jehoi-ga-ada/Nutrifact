@@ -1,5 +1,6 @@
 //ignore_for_file: prefer_const_constructors 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 ////brisik bgt warningnya anjir
 
 class SummaryScreen extends StatefulWidget {
@@ -9,6 +10,8 @@ class SummaryScreen extends StatefulWidget {
 
 class SummaryState extends State<SummaryScreen> {
   bool isExpanded = false;
+  bool isSaved = false;
+
   final List<Map<String, dynamic>> nutritionData = [
       {"name": "Fats", "amount": "17g", "dv": "42% DV"},
       {"name": "Carbohydrates", "amount": "40g", "dv": "16% DV"},
@@ -45,22 +48,24 @@ class SummaryState extends State<SummaryScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: Container(
-                      width: 26,
-                      height: 26,
-                      child: Image.asset('assets/summary_screen/exit_button.png', fit: BoxFit.cover),
+                  IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: SvgPicture.asset(
+                      'assets/summary_screen/exit_button.svg',
+                      width: 26, // Specify width
+                      height: 26, // Specify height
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      // Implement save functionality
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isSaved = !isSaved; // Toggle save state
+                      });
                     },
-                    child: Container(
+                    icon: SvgPicture.asset(
+                      isSaved ? 'assets/summary_screen/saved_summary.svg' : 'assets/summary_screen/save_summary.svg',
                       width: 25,
                       height: 25,
-                      child: Image.asset('assets/summary_screen/save_summary.png', fit: BoxFit.cover),
                     ),
                   ),
                 ],
@@ -280,10 +285,10 @@ class SummaryState extends State<SummaryScreen> {
             ],
           ),
           Positioned(
-            right: -9,
+            right: 0,
             bottom: 0,
-            child: Image.asset(
-              'assets/summary_screen/exclamation_mark.png', // Ensure you have this asset in your project
+            child: SvgPicture.asset(
+              'assets/summary_screen/exclamation_mark.svg', // Ensure you have this asset in your project
               width: 35,
               height: 35,
             ),
@@ -306,7 +311,7 @@ class SummaryState extends State<SummaryScreen> {
       text = "Warning! This product contains ${allergens.join(' and ')}";
       icon = Padding(
         padding: EdgeInsets.only(right: 10),  // Add padding to the right of the icon
-        child: Image.asset('assets/summary_screen/warning_sign.png', width: 17, height: 17),
+        child: SvgPicture.asset('assets/summary_screen/warning_sign.svg', width: 17, height: 17),
       );
       backgroundColor = Color.fromRGBO(254, 109, 2, 1);  // Bright red color for allergens present
       textColor = Colors.white; // White text color for better contrast on red background

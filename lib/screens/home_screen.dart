@@ -122,7 +122,9 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const SideBar(),
 
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: 0.05 * height), // Adjust the bottom padding here
+        padding: EdgeInsets.only(
+          bottom: 0.05 * height
+        ), // Adjust the bottom padding here
         child: SizedBox(
           height: 75,
           width: 75,

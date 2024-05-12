@@ -6,11 +6,10 @@ class PreviewScreen extends StatefulWidget {
   final Function? onConfirm;
 
   const PreviewScreen({
-    Key? key, 
+    super.key, 
     required this.imageFile,
     this.onConfirm,
-  }) 
-  : super(key: key);
+  });
 
   @override
   State<PreviewScreen> createState() => _PreviewScreenState();
@@ -25,19 +24,24 @@ class _PreviewScreenState extends State<PreviewScreen> {
     final height = size.height;
 
     return Scaffold(
-      floatingActionButton: SizedBox(
-        height: 75,
-        width: 75,
-        child: FloatingActionButton(
-          backgroundColor: Colors.transparent,
-          shape: const CircleBorder(),
-          onPressed: () {
-            if (widget.onConfirm!=null){
-              widget.onConfirm!();
-            }
-          },
-          child: Image.asset(
-            'assets/preview_screen/ok_button.png'
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(
+          bottom: 0.05 * height,
+        ),
+        child: SizedBox(
+          height: 75,
+          width: 75,
+          child: FloatingActionButton(
+            backgroundColor: Colors.transparent,
+            shape: const CircleBorder(),
+            onPressed: () {
+              if (widget.onConfirm!=null){
+                widget.onConfirm!();
+              }
+            },
+            child: Image.asset(
+              'assets/preview_screen/ok_button.png'
+            ),
           ),
         ),
       ),

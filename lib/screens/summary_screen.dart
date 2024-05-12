@@ -1,5 +1,6 @@
 //ignore_for_file: prefer_const_constructors 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 ////brisik bgt warningnya anjir
 
 class SummaryScreen extends StatefulWidget {
@@ -9,6 +10,8 @@ class SummaryScreen extends StatefulWidget {
 
 class SummaryState extends State<SummaryScreen> {
   bool isExpanded = false;
+  bool isSaved = false;
+
   final List<Map<String, dynamic>> nutritionData = [
       {"name": "Fats", "amount": "17g", "dv": "42% DV"},
       {"name": "Carbohydrates", "amount": "40g", "dv": "16% DV"},
@@ -28,18 +31,48 @@ class SummaryState extends State<SummaryScreen> {
 
   final String productName = "Häagen-Dazs Ice Cream";
 
+  final int calPerServing = 330;
+
+  final int calPerContainer = 870;
+
   @override
 
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: 75, left: 30, right: 30),
+          padding: EdgeInsets.only(top: 50, left: 30, right: 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: SvgPicture.asset(
+                      'assets/summary_screen/exit_button.svg',
+                      width: 26, // Specify width
+                      height: 26, // Specify height
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isSaved = !isSaved; // Toggle save state
+                      });
+                    },
+                    icon: SvgPicture.asset(
+                      isSaved ? 'assets/summary_screen/saved_summary.svg' : 'assets/summary_screen/save_summary.svg',
+                      width: 25,
+                      height: 25,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 19),
               Text(
-                '$productName',
+                productName,
                 style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 24,
@@ -48,9 +81,9 @@ class SummaryState extends State<SummaryScreen> {
                 ),
               ),
               SizedBox(height: 30),  // Adding space between title and next section
-              calorieRow(),
+              calorieRow(calPerServing, calPerContainer),
               SizedBox(height: 30),
-              nutritionWarnings(2),
+              nutritionWarnings(2), //passing parameter belom ada utk nutrition contents
               SizedBox(height: 35),
               allergenBox(context, ['milk']),  // Displays warning with these allergens
               SizedBox(height: 25),
@@ -78,15 +111,15 @@ class SummaryState extends State<SummaryScreen> {
   }
 
 
-  Widget calorieRow() {
+  Widget calorieRow(int calPerServing, int calPerContainer) { //nnti disini hrus bs diedit parameternya :1
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween, // This will space the elements evenly across the horizontal axis
       children: [
-        calorieInfo('330', 'cal', 'per serving'), // Calorie info for per serving
+        calorieInfo(calPerServing, 'cal', 'per serving'), // Calorie info for per serving
         verticalDivider(),
         percentageInfo(20), // Custom widget for daily needs with formatted text
         verticalDivider(),
-        calorieInfo('870', 'cal', 'per container'), // Total calories per container
+        calorieInfo(calPerContainer, 'cal', 'per container'), // Total calories per container
       ],
     );
   }
@@ -99,7 +132,7 @@ class SummaryState extends State<SummaryScreen> {
     );
   }
 
-  Widget calorieInfo(String number, String unit, String description) {
+  Widget calorieInfo(int number, String unit, String description) {
     return RichText(
       text: TextSpan(
         style: TextStyle(
@@ -252,10 +285,10 @@ class SummaryState extends State<SummaryScreen> {
             ],
           ),
           Positioned(
-            right: -9,
+            right: 0,
             bottom: 0,
-            child: Image.asset(
-              'assets/summary_screen/exclamation_mark.png', // Ensure you have this asset in your project
+            child: SvgPicture.asset(
+              'assets/summary_screen/exclamation_mark.svg', // Ensure you have this asset in your project
               width: 35,
               height: 35,
             ),
@@ -278,7 +311,7 @@ class SummaryState extends State<SummaryScreen> {
       text = "Warning! This product contains ${allergens.join(' and ')}";
       icon = Padding(
         padding: EdgeInsets.only(right: 10),  // Add padding to the right of the icon
-        child: Image.asset('assets/summary_screen/warning_sign.png', width: 17, height: 17),
+        child: SvgPicture.asset('assets/summary_screen/warning_sign.svg', width: 17, height: 17),
       );
       backgroundColor = Color.fromRGBO(254, 109, 2, 1);  // Bright red color for allergens present
       textColor = Colors.white; // White text color for better contrast on red background

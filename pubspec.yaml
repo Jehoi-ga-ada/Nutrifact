@@ -40,6 +40,7 @@ dependencies:
   gap: ^3.0.1
   external_path: ^1.0.3
   media_scanner: ^2.1.0
+  flutter_svg: ^2.0.10+1
 
 flutter_native_splash:
   color: '#fe6d02'
@@ -57,6 +58,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  syncfusion_flutter_gauges: ^25.2.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -84,11 +86,16 @@ flutter:
     # profile
     - assets/profile/back.png
     - assets/profile/edit.png
-    - assets/profile/date.png
+    - assets/profile/age.png
     - assets/profile/gender.png
     - assets/profile/height.png
     - assets/profile/weight.png
-
+    - assets/profile/active.png
+    - assets/formAllergiesAssets/Button Shape-1.svg
+    - assets/formAllergiesAssets/Button Shape.svg
+    - assets/formInfoDetailAssets/arrow-left-1.png
+    - assets/formInfoDetailAssets/arrow-left-1.svg
+    - assets/profile/save.png
 
   # assets:
   #   - images/a_dot_burr.jpeg

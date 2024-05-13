@@ -81,7 +81,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   const Text(
                     'Tell us more!',
                     style: TextStyle(
-                      color:const Color(0xFFFEA72D), // Set text color to orange
+                      color: Color(0xFFFEA72D), // Set text color to orange
                       fontSize: 34, // Adjust font size as needed
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Mulish',
@@ -404,7 +404,7 @@ class _ProfileFormState extends State<ProfileForm> {
                             decoration: BoxDecoration(
                               color: isMaleChecked ?  Color(0xFFFEA72D) : Colors.transparent,
                               borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: isMaleChecked ? Colors.orange : Colors.grey),
+                              border: Border.all(color: isMaleChecked ?  Color(0xFFFEA72D) : Colors.grey),
                             ),
                             child: Center(
                               child: Text(

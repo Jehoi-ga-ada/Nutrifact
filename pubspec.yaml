@@ -83,6 +83,8 @@ flutter:
     - assets/home_screen/history.png
     - assets/home_screen/image.png
     - assets/home_screen/photo_ins.png
+    - assets/home_screen/photo_ing_ins.png
+    - assets/home_screen/flash_off.png
     # profile
     - assets/profile/back.png
     - assets/profile/edit.png
@@ -96,7 +98,21 @@ flutter:
     - assets/formInfoDetailAssets/arrow-left-1.png
     - assets/formInfoDetailAssets/arrow-left-1.svg
     - assets/profile/save.png
-
+    #summary_screen
+    - assets/summary_screen/exclamation_mark.svg
+    - assets/summary_screen/warning_sign.svg
+    - assets/summary_screen/save_summary.svg
+    - assets/summary_screen/saved_summary.svg
+    - assets/summary_screen/exit_button.svg
+    # sidebar
+    - assets/sidebar/back_button.png
+    - assets/sidebar/watermark.png
+    # preview_screen
+    - assets/preview_screen/ok_button.png
+    - assets/preview_screen/back_button.png
+    # loading_screen
+    - assets/loading_screen/processing_image.png
+    
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

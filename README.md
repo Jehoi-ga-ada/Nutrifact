@@ -33,7 +33,7 @@ NutriFact is a mobile application that simplifies the understanding and comparis
 4. Run the application: `flutter run`
 
 ## Showcase 📷
-![Showcase](./nutrifact/NutriFact_Showcase.png)
+![Showcase](./NutriFact_Showcase.png)
 
 ## Feedback and Contributions 🙌
 

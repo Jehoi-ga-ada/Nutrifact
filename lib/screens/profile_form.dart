@@ -2,28 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart'; // Add this import for TextInputFormatter
 
-
-bool isMaleChecked = false;
-bool isFemaleChecked = false;
-bool isAct1 = false;
-bool isAct2 = false;
-bool isAct3 = false;
-bool isAct4 = false;
-bool isName = false;
-bool isWeight = false;
-bool isHeight = false;
-bool isAge = false;
-Color borderColor = Colors.grey;
-
 class ProfileForm extends StatefulWidget {
-  const ProfileForm({Key? key}) : super(key: key);
+  const ProfileForm({super.key});
 
   @override
-  _ProfileFormState createState() => _ProfileFormState();
+  State<ProfileForm> createState() => _ProfileFormState();
 }
 
 class _ProfileFormState extends State<ProfileForm> {
   Color containerColor = Colors.transparent;
+  bool isMaleChecked = false;
+  bool isFemaleChecked = false;
+  bool isAct1 = false;
+  bool isAct2 = false;
+  bool isAct3 = false;
+  bool isAct4 = false;
+  bool isName = false;
+  bool isWeight = false;
+  bool isHeight = false;
+  bool isAge = false;
+  Color borderColor = Colors.grey;
 
   List<String> allergies = [];
 
@@ -50,7 +48,7 @@ class _ProfileFormState extends State<ProfileForm> {
       // Back button
 // ================================================================
             Container(
-              margin: EdgeInsets.fromLTRB(30, 40, 0, 0),
+              margin: const EdgeInsets.fromLTRB(30, 40, 0, 0),
               child: Positioned(
                 left: 0.06 * MediaQuery.of(context).size.width,
                 top: 0.06 * MediaQuery.of(context).size.height,
@@ -70,7 +68,7 @@ class _ProfileFormState extends State<ProfileForm> {
         // FOR Title and subtext
 // ================================================================
         Container(
-          margin: EdgeInsets.fromLTRB(40, 10, 40, 10),
+          margin: const EdgeInsets.fromLTRB(40, 10, 40, 10),
             child : Positioned(
               left: 0.07 * MediaQuery.of(context).size.width,
               top: 0.11 * MediaQuery.of(context).size.height, // Adjust the top position for the "Tell us more!" text
@@ -107,11 +105,11 @@ class _ProfileFormState extends State<ProfileForm> {
       // FIELD BUAT NAME
 // ================================================================
         Container(
-          margin: EdgeInsets.fromLTRB(40, 10, 40, 2.5),
+          margin: const EdgeInsets.fromLTRB(40, 10, 40, 2.5),
           child : Positioned(
             left: 0.09 * MediaQuery.of(context).size.width,
             top: 0.23 * MediaQuery.of(context).size.height, // Adjust the top position for the additional text box
-            child: Column(
+            child: const Column(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Additional text box
@@ -131,7 +129,7 @@ class _ProfileFormState extends State<ProfileForm> {
         ),
 
       Container(
-        margin: EdgeInsets.fromLTRB(30, 10, 28, 2),
+        margin: const EdgeInsets.fromLTRB(30, 10, 28, 2),
         child: GestureDetector(
           onTap: () {
             setState(() {
@@ -154,19 +152,19 @@ class _ProfileFormState extends State<ProfileForm> {
                   border: Border.all(color: Colors.white), // Use the borderColor variable here
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
                     decoration: InputDecoration(
                       // border: InputBorder.none, // Hide input box border
                      enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.grey),
+                              borderSide:  const BorderSide(color: Colors.grey),
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Color(0xFFFEA72D)),
+                              borderSide:  const BorderSide(color: Color(0xFFFEA72D)),
                       ),
-                      contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 4),
+                      contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 4),
                       ),
                          inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z\s]')), // Allow only digits
@@ -187,7 +185,7 @@ class _ProfileFormState extends State<ProfileForm> {
   // FIELD BUAT HEIGHT AND WEIGHT
 // ================================================================
           Container(
-            margin: EdgeInsets.fromLTRB(30, 10, 35, 2.5),
+            margin: const EdgeInsets.fromLTRB(30, 10, 35, 2.5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -197,7 +195,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       '    Height',
                       style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
@@ -206,7 +204,7 @@ class _ProfileFormState extends State<ProfileForm> {
                         fontFamily: 'Mulish',
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -224,20 +222,20 @@ class _ProfileFormState extends State<ProfileForm> {
                         border: Border.all(color: isHeight ? Colors.white : Colors.white),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.grey),
+                              borderSide:  const BorderSide(color: Colors.grey),
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color:  Color(0xFFFEA72D)),
+                              borderSide:  const BorderSide(color:  Color(0xFFFEA72D)),
                             ),
-                            contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
+                            contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                           ),
-                           keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
+                           keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')), // Allow only digits
                               ],
@@ -253,7 +251,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       '   Weight',
                       style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
@@ -262,7 +260,7 @@ class _ProfileFormState extends State<ProfileForm> {
                         fontFamily: 'Mulish',
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -280,20 +278,20 @@ class _ProfileFormState extends State<ProfileForm> {
                         border: Border.all(color: isWeight ? Colors.white : Colors.white),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.grey),
+                              borderSide:  const BorderSide(color: Colors.grey),
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color:  Color(0xFFFEA72D)),
+                              borderSide:  const BorderSide(color:  Color(0xFFFEA72D)),
                           ),
-                          contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
+                          contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                           ),
-                           keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
+                           keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[
                                 FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')), // Allow only digits
                               ],
@@ -311,7 +309,7 @@ class _ProfileFormState extends State<ProfileForm> {
   // FIELD BUAT AGE AND SEX
 // ================================================================
           Container(
-            margin: EdgeInsets.fromLTRB(30, 10, 40, 2.5),
+            margin: const EdgeInsets.fromLTRB(30, 10, 40, 2.5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -320,7 +318,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       '    Age',
                       style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
@@ -329,7 +327,7 @@ class _ProfileFormState extends State<ProfileForm> {
                         fontFamily: 'Mulish',
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -347,20 +345,20 @@ class _ProfileFormState extends State<ProfileForm> {
                         border: Border.all(color: isAge? Colors.white : Colors.white),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: TextField(
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color: Colors.grey),
+                              borderSide:  const BorderSide(color: Colors.grey),
                             ),
                       focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide:  BorderSide(color:  Color(0xFFFEA72D)),
+                              borderSide:  const BorderSide(color:  Color(0xFFFEA72D)),
                           ),
-                          contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5), // Adjust padding as needed
+                          contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 3.5), // Adjust padding as needed
                           ),
-                           keyboardType: TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
+                           keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: false), // Allow only integers
                             inputFormatters: <TextInputFormatter>[
                                  FilteringTextInputFormatter.allow(RegExp(r'^[0-9]*$')),
                               ],
@@ -375,7 +373,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Sex',
                       style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1),
@@ -384,7 +382,7 @@ class _ProfileFormState extends State<ProfileForm> {
                         fontFamily: 'Mulish',
                       ),
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     Row(
                       children: [
                         GestureDetector(
@@ -402,9 +400,9 @@ class _ProfileFormState extends State<ProfileForm> {
                             width: 0.175 * MediaQuery.of(context).size.width,
                             height: 0.05 * MediaQuery.of(context).size.height,
                             decoration: BoxDecoration(
-                              color: isMaleChecked ?  Color(0xFFFEA72D) : Colors.transparent,
+                              color: isMaleChecked ?  const Color(0xFFFEA72D) : Colors.transparent,
                               borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: isMaleChecked ?  Color(0xFFFEA72D) : Colors.grey),
+                              border: Border.all(color: isMaleChecked ?  const Color(0xFFFEA72D) : Colors.grey),
                             ),
                             child: Center(
                               child: Text(
@@ -417,7 +415,7 @@ class _ProfileFormState extends State<ProfileForm> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 5), // Add space between "M" and "F"
+                        const SizedBox(width: 5), // Add space between "M" and "F"
                         GestureDetector(
                           onTap: () {
                             setState(() {
@@ -429,9 +427,9 @@ class _ProfileFormState extends State<ProfileForm> {
                             width: 0.175 * MediaQuery.of(context).size.width,
                             height: 0.05 * MediaQuery.of(context).size.height,
                             decoration: BoxDecoration(
-                              color: isFemaleChecked ?  Color(0xFFFEA72D) : Colors.transparent,
+                              color: isFemaleChecked ?  const Color(0xFFFEA72D) : Colors.transparent,
                               borderRadius: BorderRadius.circular(15),
-                              border: Border.all(color: isFemaleChecked ?  Color(0xFFFEA72D) : Colors.grey),
+                              border: Border.all(color: isFemaleChecked ?  const Color(0xFFFEA72D) : Colors.grey),
                             ),
                             child: Center(
                               child: Text(
@@ -458,7 +456,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
 // FIELD BUAT ACTIVITY LEVEL
           Container(
-            margin: EdgeInsets.fromLTRB(40, 10, 40, 2.5),
+            margin: const EdgeInsets.fromLTRB(40, 10, 40, 2.5),
             child: Positioned(
               left: 0.09 * MediaQuery.of(context).size.width,
               top: 0.5225 * MediaQuery.of(context).size.height,
@@ -481,7 +479,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
           // First Row: Sedentary and Lightly Active
           Container(
-            margin: EdgeInsets.fromLTRB(40, 2.5, 40, 2.5),
+            margin: const EdgeInsets.fromLTRB(40, 2.5, 40, 2.5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -503,9 +501,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct1 ?  Color(0xFFFEA72D) : Colors.transparent,
+                      color: isAct1 ?  const Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct1 ?  Color(0xFFFEA72D) : Colors.grey),
+                      border: Border.all(color: isAct1 ?  const Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(
@@ -539,9 +537,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct2 ?  Color(0xFFFEA72D) : Colors.transparent,
+                      color: isAct2 ?  const Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct2 ?  Color(0xFFFEA72D) : Colors.grey),
+                      border: Border.all(color: isAct2 ?  const Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(
@@ -563,7 +561,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
           // Second Row: Moderately Active and Very Active
           Container(
-            margin: EdgeInsets.fromLTRB(40, 5, 40, 2.5),
+            margin: const EdgeInsets.fromLTRB(40, 5, 40, 2.5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -585,9 +583,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct3 ?  Color(0xFFFEA72D) : Colors.transparent,
+                      color: isAct3 ?  const Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct3 ?  Color(0xFFFEA72D) : Colors.grey),
+                      border: Border.all(color: isAct3 ?  const Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(
@@ -621,9 +619,9 @@ class _ProfileFormState extends State<ProfileForm> {
                     width: 0.385 * MediaQuery.of(context).size.width,
                     height: 0.08 * MediaQuery.of(context).size.height,
                     decoration: BoxDecoration(
-                      color: isAct4 ?  Color(0xFFFEA72D) : Colors.transparent,
+                      color: isAct4 ?  const Color(0xFFFEA72D) : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: isAct4 ?  Color(0xFFFEA72D) : Colors.grey),
+                      border: Border.all(color: isAct4 ?  const Color(0xFFFEA72D) : Colors.grey),
                     ),
                     child: Center(
                       child: Text(
@@ -646,12 +644,12 @@ class _ProfileFormState extends State<ProfileForm> {
 // ================================================================================================================
 // ===== Allergies section =========
       Container(
-        margin: EdgeInsets.fromLTRB(40, 10, 40, 20),
+        margin: const EdgeInsets.fromLTRB(40, 10, 40, 20),
         child : Positioned(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Allergies',
                 style: TextStyle(
                   fontSize: 15,
@@ -660,8 +658,8 @@ class _ProfileFormState extends State<ProfileForm> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 7.5),
-                padding: EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 20),
+                margin: const EdgeInsets.only(top: 7.5),
+                padding: const EdgeInsets.only(top: 15, bottom: 15, left: 20, right: 20),
                 decoration: BoxDecoration(
                   color: const Color(0xFFFCDFB5),
                   borderRadius: BorderRadius.circular(15),
@@ -685,7 +683,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                   child: Chip(
                                     label: Text(
                                       allergen,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.normal,
                                         color: Colors.white,
@@ -695,7 +693,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                     backgroundColor: const Color(0xFFFEA72D),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(17),
-                                      side: BorderSide(style: BorderStyle.none),
+                                      side: const BorderSide(style: BorderStyle.none),
                                     ),
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     deleteIconColor: Colors.white,
@@ -717,8 +715,8 @@ class _ProfileFormState extends State<ProfileForm> {
                                       return AlertDialog(
                                         backgroundColor: Colors.white,
                                         surfaceTintColor: Colors.transparent,
-                                        contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-                                        title: Text(
+                                        contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                                        title: const Text(
                                           'Add Allergens',
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
@@ -728,7 +726,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                         content: Container(
                                           decoration: BoxDecoration(
                                             borderRadius: BorderRadius.circular(25),
-                                            border: Border.all(color: Color(0xFFAFB1B6)),
+                                            border: Border.all(color: const Color(0xFFAFB1B6)),
                                           ),
                                           child: Row(
                                             children: [
@@ -746,7 +744,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                                       newAllergen = '';
                                                     }
                                                   },
-                                                  decoration: InputDecoration(
+                                                  decoration: const InputDecoration(
                                                     contentPadding: EdgeInsets.symmetric(horizontal: 20),
                                                     hintText: 'Type Here...',
                                                     hintStyle: TextStyle(
@@ -770,7 +768,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                                     'assets/formAllergiesAssets/Button Shape-1.svg',
                                                     width: 14.5,
                                                     height: 14.5,
-                                                    color: Color(0xFF272525),
+                                                    color: const Color(0xFF272525),
                                                     alignment: Alignment.center,
                                                   ),
                                                 ),
@@ -785,9 +783,9 @@ class _ProfileFormState extends State<ProfileForm> {
                                 child: Container(
                                   width: 37,
                                   height: 37,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: const Color(0xFFFEA72D),
+                                    color: Color(0xFFFEA72D),
                                   ),
                                   child: Center(
                                     child: SvgPicture.asset(
@@ -815,24 +813,24 @@ class _ProfileFormState extends State<ProfileForm> {
   // All good Button
   // ==============================
       Container(
-        margin: EdgeInsets.symmetric(horizontal: 40),
+        margin: const EdgeInsets.symmetric(horizontal: 40),
         child: Container(
           width: double.infinity, // Make the container fill the width
-          margin: EdgeInsets.only(top: 10, bottom: 30), // Apply margins
+          margin: const EdgeInsets.only(top: 10, bottom: 30), // Apply margins
           child: ElevatedButton(
             onPressed: () {
               // Add your functionality here
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Color(0xFFFF8233)), // Button color
+              backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFF8233)), // Button color
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15), // Rounded corners
                 ),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
+            child: const Padding(
+              padding: EdgeInsets.all(12.0),
               child: Text(
                 'All good!',
                 style: TextStyle(

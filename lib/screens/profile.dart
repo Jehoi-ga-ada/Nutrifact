@@ -480,20 +480,20 @@ class ProfileForm extends StatefulWidget {
   State<ProfileForm> createState() => _ProfileFormState();
 }
 
-bool isMaleChecked = false;
-bool isFemaleChecked = false;
-bool isAct1 = false;
-bool isAct2 = false;
-bool isAct3 = false;
-bool isAct4 = false;
-bool isName = false;
-bool isWeight = false;
-bool isHeight = false;
-bool isAge = false;
-Color borderColor = Colors.grey;
-
 class _ProfileFormState extends State<ProfileForm> {
   Color containerColor = Colors.transparent;
+  bool isMaleChecked = false;
+  bool isFemaleChecked = false;
+  bool isAct1 = false;
+  bool isAct2 = false;
+  bool isAct3 = false;
+  bool isAct4 = false;
+  bool isName = false;
+  bool isWeight = false;
+  bool isHeight = false;
+  bool isAge = false;
+  Color borderColor = Colors.grey;
+
   List<String> allergies = [];
 
   TextEditingController nameController = TextEditingController();

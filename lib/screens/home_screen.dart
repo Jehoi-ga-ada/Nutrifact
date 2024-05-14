@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacement(
                   context, 
                   MaterialPageRoute(
-                    builder: (context) => SummaryScreen(),
+                    builder: (context) => const SummaryScreen(),
                   ),
                 );
                 setState(() {

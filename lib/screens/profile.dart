@@ -4,8 +4,10 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:flutter/services.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class InfoCard extends StatelessWidget {
@@ -14,23 +16,22 @@ class InfoCard extends StatelessWidget {
   final String iconPath;
 
   const InfoCard(
-      {Key? key,
+      {super.key,
       required this.label,
       required this.value,
-      required this.iconPath})
-      : super(key: key);
+      required this.iconPath});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
-        color: Color.fromRGBO(255, 246, 235, 1),
+        color: const Color.fromRGBO(255, 246, 235, 1),
       ),
-      padding: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Image.asset(iconPath, width: 36, height: 36),
-        SizedBox(width: 12),
+        const SizedBox(width: 12),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +39,7 @@ class InfoCard extends StatelessWidget {
             Text(
               label,
               textAlign: TextAlign.left,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontWeight: FontWeight.w600,
                 fontSize: 14,
@@ -48,7 +49,7 @@ class InfoCard extends StatelessWidget {
             Text(
               value,
               textAlign: TextAlign.left,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontWeight: FontWeight.w700,
                 fontSize: 18,
@@ -65,22 +66,22 @@ class InfoCard extends StatelessWidget {
 class ActivityCard extends StatelessWidget {
   final String level;
 
-  const ActivityCard({Key? key, required this.level}) : super(key: key);
+  const ActivityCard({super.key, required this.level});
 
   Color _getColorForLevel(String level) {
     switch (level) {
       case 'Sedentary':
-        return Color.fromRGBO(
+        return const Color.fromRGBO(
             255, 80, 25, 1); // Change to the desired color for 'Low' level
       case 'Light':
-        return Color.fromRGBO(255, 135, 25,
+        return const Color.fromRGBO(255, 135, 25,
             1); // Change to the desired color for 'Moderate' level
       case 'Moderate':
-        return Color.fromRGBO(255, 204, 25, 1);
-        ; // Change to the desired color for 'High' level
+        return const Color.fromRGBO(255, 204, 25, 1);
+        // Change to the desired color for 'High' level
       default:
-        return Color.fromRGBO(89, 223, 77, 1);
-        ;
+        return const Color.fromRGBO(89, 223, 77, 1);
+        
     }
   }
 
@@ -91,13 +92,13 @@ class ActivityCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20.0),
         color: _getColorForLevel(level),
       ),
-      padding: EdgeInsets.only(right: 21, left: 21, top: 10, bottom: 10),
+      padding: const EdgeInsets.only(right: 21, left: 21, top: 10, bottom: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset('assets/profile/active.png', width: 55, height: 55),
-          SizedBox(
+          const SizedBox(
             height: 17,
             child: Text(
               'Activity Level',
@@ -115,7 +116,7 @@ class ActivityCard extends StatelessWidget {
             child: Text(
               level,
               textAlign: TextAlign.left,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontWeight: FontWeight.w700,
                 fontSize: 18,
@@ -132,13 +133,13 @@ class ActivityCard extends StatelessWidget {
 class BMIGauge extends StatelessWidget {
   final double bmiValue;
 
-  BMIGauge({required this.bmiValue});
+  const BMIGauge({super.key, required this.bmiValue});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         padding:
-            EdgeInsets.only(top: 30, bottom: 0), // Padding inside the border
+            const EdgeInsets.only(top: 30, bottom: 0), // Padding inside the border
         child: SfRadialGauge(
           axes: <RadialAxis>[
             RadialAxis(
@@ -148,7 +149,7 @@ class BMIGauge extends StatelessWidget {
               endAngle: 360,
               radiusFactor:
                   3, // Reduce the radius to fit the gauge within a smaller space
-              axisLineStyle: AxisLineStyle(
+              axisLineStyle: const AxisLineStyle(
                 cornerStyle: CornerStyle.bothFlat,
                 thickness: 10,
                 thicknessUnit: GaugeSizeUnit
@@ -180,16 +181,16 @@ class BMIGauge extends StatelessWidget {
 class BMIIndicator extends StatelessWidget {
   final double bmi;
 
-  const BMIIndicator({Key? key, required this.bmi}) : super(key: key);
+  const BMIIndicator({super.key, required this.bmi});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.0),
-          color: Color.fromRGBO(254, 235, 207, 1),
+          color: const Color.fromRGBO(254, 235, 207, 1),
         ),
-        padding: EdgeInsets.only(right: 21, left: 21, top: 15, bottom: 10),
+        padding: const EdgeInsets.only(right: 21, left: 21, top: 15, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -202,7 +203,7 @@ class BMIIndicator extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 17,
                   child: Text(
                     'BMI',
@@ -220,7 +221,7 @@ class BMIIndicator extends StatelessWidget {
                   child: Text(
                     bmi.toStringAsFixed(1),
                     textAlign: TextAlign.left,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Mulish',
                       fontWeight: FontWeight.w700,
                       fontSize: 18,
@@ -285,21 +286,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       // == APP BAR == //
       appBar: AppBar(
-        leading: Container(
-            child: Padding(
-          padding: const EdgeInsets.only(left: 10),
-          child: IconButton(
-            icon: Image.asset(
-              'assets/profile/back.png',
-              height: 26,
-              width: 26,
-            ),
-            onPressed: () {
-              // Add functionality to go back
-            },
-          ),
-        )),
-        title: Text(
+        leading: Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: IconButton(
+        icon: Image.asset(
+          'assets/profile/back.png',
+          height: 26,
+          width: 26,
+        ),
+        onPressed: () {
+          // Add functionality to go back
+        },
+                  ),
+                ),
+        title: const Text(
           'Profile',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -312,7 +312,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 32.0),
+            padding: const EdgeInsets.only(right: 32.0),
             child: GestureDetector(
               onTap: () {
                 _showEditProfileForm(context);
@@ -328,20 +328,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           // == PROFILE PICTURE AND NAME == //
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             CircleAvatar(
               radius: 60,
               backgroundColor: Colors.grey[200],
               child: Text(name[0],
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 40,
                       color: Color.fromRGBO(187, 191, 194,
                           1))), // Displays the first letter of the name
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               name,
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontWeight: FontWeight.w700,
                 fontSize: 22,
@@ -349,7 +349,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
 
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
 
             // == AGE, GENDER, WEIGHT, HEIGHT == //
             GridView.count(
@@ -363,7 +363,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: <Widget>[
                 InfoCard(
                   label: 'Age',
-                  value: age.toString() + ' y.o.',
+                  value: '$age y.o.',
                   iconPath: 'assets/profile/age.png',
                 ),
                 InfoCard(
@@ -372,11 +372,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     iconPath: 'assets/profile/gender.png'),
                 InfoCard(
                     label: 'Height',
-                    value: height.toString() + ' cm',
+                    value: '$height cm',
                     iconPath: 'assets/profile/height.png'),
                 InfoCard(
                     label: 'Weight',
-                    value: weight.toString() + ' kg',
+                    value: '$weight kg',
                     iconPath: 'assets/profile/weight.png'),
               ],
             ),
@@ -398,14 +398,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
             // == ALLERGIES == //
             Container(
-              padding: EdgeInsets.only(top: 12, left: 32, right: 32),
+              padding: const EdgeInsets.only(top: 12, left: 32, right: 32),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: EdgeInsets.only(
+                    padding: const EdgeInsets.only(
                         top: 15, bottom: 15, left: 20, right: 20),
-                    constraints: BoxConstraints(minHeight: 140),
+                    constraints: const BoxConstraints(minHeight: 140),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(254, 235, 207, 1),
                       borderRadius: BorderRadius.circular(15),
@@ -414,7 +414,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Allergies",
                           textAlign: TextAlign.left,
                           style: TextStyle(
@@ -434,25 +434,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 // runSpacing: 10.0,
                                 children: [
                                   for (String allergen in allergies)
-                                    Container(
-                                      child: Chip(
-                                        label: Text(
-                                          allergen,
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.normal,
-                                            color: Colors.white,
-                                            fontFamily: 'Mulish',
-                                          ),
+                                    Chip(
+                                      label: Text(
+                                        allergen,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.white,
+                                          fontFamily: 'Mulish',
                                         ),
-                                        backgroundColor:
-                                            const Color(0xFFFEA72D),
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(17),
-                                          side: BorderSide(
-                                              style: BorderStyle.none),
-                                        ),
+                                      ),
+                                      backgroundColor:
+                                          const Color(0xFFFEA72D),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(17),
+                                        side: const BorderSide(
+                                            style: BorderStyle.none),
                                       ),
                                     ),
                                 ],
@@ -476,10 +474,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 class ProfileForm extends StatefulWidget {
   final Function updateProfile;
 
-  ProfileForm({Key? key, required this.updateProfile}) : super(key: key);
+  const ProfileForm({super.key, required this.updateProfile});
 
   @override
-  _ProfileFormState createState() => _ProfileFormState();
+  State<ProfileForm> createState() => _ProfileFormState();
 }
 
 bool isMaleChecked = false;
@@ -538,14 +536,14 @@ class _ProfileFormState extends State<ProfileForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.fromLTRB(40, 30, 40, 10),
+              margin: const EdgeInsets.fromLTRB(40, 30, 40, 10),
               child: Positioned(
                 left: 0.09 * MediaQuery.of(context).size.width,
                 top: 0.23 * MediaQuery.of(context).size.height,
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Edit Profile',
+                      const Text('Edit Profile',
                         style: TextStyle(
                         color: Color.fromRGBO(0, 0, 0, 1), 
                         fontSize: 22, 
@@ -588,14 +586,14 @@ class _ProfileFormState extends State<ProfileForm> {
             // FIELD BUAT NAME
 // ================================================================
             Container(
-              margin: EdgeInsets.fromLTRB(40, 13, 40, 2.5),
+              margin: const EdgeInsets.fromLTRB(40, 13, 40, 2.5),
               child: Positioned(
                 left: 0.09 * MediaQuery.of(context).size.width,
                 top: 0.23 *
                     MediaQuery.of(context)
                         .size
                         .height, 
-                child: Column(
+                child: const Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Additional text box
@@ -616,7 +614,7 @@ class _ProfileFormState extends State<ProfileForm> {
             ),
 
             Container(
-              margin: EdgeInsets.fromLTRB(30, 10, 28, 2),
+              margin: const EdgeInsets.fromLTRB(30, 10, 28, 2),
               child: GestureDetector(
                 onTap: () {
                   setState(() {
@@ -648,20 +646,20 @@ class _ProfileFormState extends State<ProfileForm> {
                                 .white), // Use the borderColor variable here
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
                           controller: nameController,
                           decoration: InputDecoration(
                             // border: InputBorder.none, // Hide input box border
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide: BorderSide(color: Colors.grey),
+                              borderSide: const BorderSide(color: Colors.grey),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
-                              borderSide: BorderSide(color: Colors.orange),
+                              borderSide: const BorderSide(color: Colors.orange),
                             ),
-                            contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
+                            contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                           ),
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(
@@ -678,7 +676,7 @@ class _ProfileFormState extends State<ProfileForm> {
             // FIELD BUAT HEIGHT AND WEIGHT
 // ================================================================
             Container(
-              margin: EdgeInsets.fromLTRB(30, 10, 35, 2.5),
+              margin: const EdgeInsets.fromLTRB(30, 10, 35, 2.5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -686,7 +684,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         '    Height',
                         style: TextStyle(
                           color: Color.fromRGBO(0, 0, 0, 1),
@@ -695,7 +693,7 @@ class _ProfileFormState extends State<ProfileForm> {
                           fontFamily: 'Mulish',
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -715,7 +713,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 color: isHeight ? Colors.white : Colors.white),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: TextField(
                               controller: heightController,
                               onChanged: (value) {
@@ -724,15 +722,15 @@ class _ProfileFormState extends State<ProfileForm> {
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderSide: const BorderSide(color: Colors.grey),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(color: Colors.orange),
+                                  borderSide: const BorderSide(color: Colors.orange),
                                 ),
-                                contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
+                                contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                               ),
-                              keyboardType: TextInputType.numberWithOptions(
+                              keyboardType: const TextInputType.numberWithOptions(
                                   signed: true,
                                   decimal: false), // Allow only integers
                               inputFormatters: <TextInputFormatter>[
@@ -750,7 +748,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         '   Weight',
                         style: TextStyle(
                           color: Color.fromRGBO(0, 0, 0, 1),
@@ -759,7 +757,7 @@ class _ProfileFormState extends State<ProfileForm> {
                           fontFamily: 'Mulish',
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -779,7 +777,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                 color: isWeight ? Colors.white : Colors.white),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: TextField(
                               controller: weightController,
                               onChanged: (value) {
@@ -788,15 +786,15 @@ class _ProfileFormState extends State<ProfileForm> {
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderSide: const BorderSide(color: Colors.grey),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(color: Colors.orange),
+                                  borderSide: const BorderSide(color: Colors.orange),
                                 ),
-                                contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
+                                contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                               ),
-                              keyboardType: TextInputType.numberWithOptions(
+                              keyboardType: const TextInputType.numberWithOptions(
                                   signed: true,
                                   decimal: false), // Allow only integers
                               inputFormatters: <TextInputFormatter>[
@@ -816,7 +814,7 @@ class _ProfileFormState extends State<ProfileForm> {
             // FIELD BUAT AGE AND SEX
 // ================================================================
             Container(
-              margin: EdgeInsets.fromLTRB(30, 10, 40, 2.5),
+              margin: const EdgeInsets.fromLTRB(30, 10, 40, 2.5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -824,7 +822,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         '    Age',
                         style: TextStyle(
                           color: Color.fromRGBO(0, 0, 0, 1),
@@ -833,7 +831,7 @@ class _ProfileFormState extends State<ProfileForm> {
                           fontFamily: 'Mulish',
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       GestureDetector(
                         onTap: () {
                           setState(() {
@@ -853,21 +851,21 @@ class _ProfileFormState extends State<ProfileForm> {
                                 color: isAge ? Colors.white : Colors.white),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
                             child: TextField(
                               controller: ageController,
                               decoration: InputDecoration(
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(color: Colors.grey),
+                                  borderSide: const BorderSide(color: Colors.grey),
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25.0),
-                                  borderSide: BorderSide(color: Colors.orange),
+                                  borderSide: const BorderSide(color: Colors.orange),
                                 ),
-                                contentPadding: EdgeInsets.fromLTRB(11, 0, 0, 3.5),
+                                contentPadding: const EdgeInsets.fromLTRB(11, 0, 0, 3.5),
                               ),
-                              keyboardType: TextInputType.numberWithOptions(
+                              keyboardType: const TextInputType.numberWithOptions(
                                   signed: true,
                                   decimal: false), // Allow only integers
                               inputFormatters: <TextInputFormatter>[
@@ -885,7 +883,7 @@ class _ProfileFormState extends State<ProfileForm> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Sex',
                         style: TextStyle(
                           color: Color.fromRGBO(0, 0, 0, 1),
@@ -894,7 +892,7 @@ class _ProfileFormState extends State<ProfileForm> {
                           fontFamily: 'Mulish',
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Row(
                         children: [
                           GestureDetector(
@@ -935,7 +933,7 @@ class _ProfileFormState extends State<ProfileForm> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 5), // Add space between "M" and "F"
+                          const SizedBox(width: 5), // Add space between "M" and "F"
                           GestureDetector(
                             onTap: () {
                               setState(() {
@@ -983,7 +981,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
 // FIELD BUAT ACTIVITY LEVEL
             Container(
-              margin: EdgeInsets.fromLTRB(40, 13, 40, 2.5),
+              margin: const EdgeInsets.fromLTRB(40, 13, 40, 2.5),
               child: Positioned(
                 left: 0.09 * MediaQuery.of(context).size.width,
                 top: 0.5225 * MediaQuery.of(context).size.height,
@@ -1006,7 +1004,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
             // First Row: Sedentary and Lightly Active
             Container(
-              margin: EdgeInsets.fromLTRB(40, 2.5, 40, 2.5),
+              margin: const EdgeInsets.fromLTRB(40, 2.5, 40, 2.5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -1092,7 +1090,7 @@ class _ProfileFormState extends State<ProfileForm> {
 
             // Second Row: Moderately Active and Very Active
             Container(
-              margin: EdgeInsets.fromLTRB(40, 5, 40, 2.5),
+              margin: const EdgeInsets.fromLTRB(40, 5, 40, 2.5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -1179,12 +1177,12 @@ class _ProfileFormState extends State<ProfileForm> {
 // ================================================================================================================
 // ===== Allergies section =========
             Container(
-              margin: EdgeInsets.fromLTRB(40, 13, 40, 20),
+              margin: const EdgeInsets.fromLTRB(40, 13, 40, 20),
               child: Positioned(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Allergies',
                       style: TextStyle(
                         fontSize: 15,
@@ -1193,8 +1191,8 @@ class _ProfileFormState extends State<ProfileForm> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 7.5),
-                      padding: EdgeInsets.only(
+                      margin: const EdgeInsets.only(top: 7.5),
+                      padding: const EdgeInsets.only(
                           top: 15, bottom: 15, left: 20, right: 20),
                       decoration: BoxDecoration(
                         color: const Color(0xFFFCDFB5),
@@ -1218,7 +1216,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                         child: Chip(
                                           label: Text(
                                             allergen,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.normal,
                                               color: Colors.white,
@@ -1230,7 +1228,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                           shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(17),
-                                            side: BorderSide(
+                                            side: const BorderSide(
                                                 style: BorderStyle.none),
                                           ),
                                           materialTapTargetSize:
@@ -1256,9 +1254,9 @@ class _ProfileFormState extends State<ProfileForm> {
                                               surfaceTintColor:
                                                   Colors.transparent,
                                               contentPadding:
-                                                  EdgeInsets.fromLTRB(
+                                                  const EdgeInsets.fromLTRB(
                                                       20, 20, 20, 20),
-                                              title: Text(
+                                              title: const Text(
                                                 'Add Allergens',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
@@ -1270,7 +1268,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                                   borderRadius:
                                                       BorderRadius.circular(25),
                                                   border: Border.all(
-                                                      color: Color(0xFFAFB1B6)),
+                                                      color: const Color(0xFFAFB1B6)),
                                                 ),
                                                 child: Row(
                                                   children: [
@@ -1293,7 +1291,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                                           }
                                                         },
                                                         decoration:
-                                                            InputDecoration(
+                                                            const InputDecoration(
                                                           contentPadding:
                                                               EdgeInsets
                                                                   .symmetric(
@@ -1331,7 +1329,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                                           width: 14.5,
                                                           height: 14.5,
                                                           color:
-                                                              Color(0xFF272525),
+                                                              const Color(0xFF272525),
                                                           alignment:
                                                               Alignment.center,
                                                         ),
@@ -1347,9 +1345,9 @@ class _ProfileFormState extends State<ProfileForm> {
                                       child: Container(
                                         width: 37,
                                         height: 37,
-                                        decoration: BoxDecoration(
+                                        decoration: const BoxDecoration(
                                           shape: BoxShape.circle,
-                                          color: const Color(0xFFFEA72D),
+                                          color: Color(0xFFFEA72D),
                                         ),
                                         child: Center(
                                           child: SvgPicture.asset(

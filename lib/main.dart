@@ -1,11 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:nutrifact/screens/profile_form.dart';
 import 'package:nutrifact/screens/home_screen.dart';
-import 'package:nutrifact/screens/profile.dart';
-import 'package:nutrifact/screens/summary_screen.dart';
-// import 'package:flutter_native_splash/flutter_native_splash.dart';
-// import 'package:nutrifact/screens/splash_screen.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ProfileForm(),
+      home: HomeScreen(
+        cameras: cameras,
+      ),
     );
   }
 }

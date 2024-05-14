@@ -1,15 +1,26 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:nutrifact/screens/profile_form.dart';
-import 'package:nutrifact/screens/profile_form1.dart';
+import 'package:nutrifact/screens/home_screen.dart';
+import 'package:nutrifact/screens/profile.dart';
+import 'package:nutrifact/screens/summary_screen.dart';
+// import 'package:flutter_native_splash/flutter_native_splash.dart';
+// import 'package:nutrifact/screens/splash_screen.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  final cameras = await availableCameras();
+  runApp(MyApp(cameras: cameras,));
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final List<CameraDescription> cameras;
+  const MyApp({super.key, required this.cameras});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: ProfileForm(),
     );

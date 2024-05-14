@@ -30,6 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  syncfusion_flutter_gauges: ^25.2.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,6 +41,7 @@ dependencies:
   gap: ^3.0.1
   external_path: ^1.0.3
   media_scanner: ^2.1.0
+  flutter_svg: ^2.0.10+1
 
 flutter_native_splash:
   color: '#fe6d02'
@@ -71,6 +73,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    # profile_form
+    - assets/formAllergiesAssets/Button Shape-1.svg
+    - assets/formAllergiesAssets/Button Shape.svg
+    - assets/formInfoDetailAssets/arrow-left-1.png
     # splash_screen
     - assets/splash_screen/splash_logo.png
     - assets/splash_screen/splash_white_logo.png
@@ -81,6 +87,35 @@ flutter:
     - assets/home_screen/history.png
     - assets/home_screen/image.png
     - assets/home_screen/photo_ins.png
+    - assets/home_screen/photo_ing_ins.png
+    - assets/home_screen/flash_off.png
+    # profile
+    - assets/profile/back.png
+    - assets/profile/edit.png
+    - assets/profile/age.png
+    - assets/profile/gender.png
+    - assets/profile/height.png
+    - assets/profile/weight.png
+    - assets/profile/active.png
+    - assets/formAllergiesAssets/Button Shape-1.svg
+    - assets/formAllergiesAssets/Button Shape.svg
+    - assets/formInfoDetailAssets/arrow-left-1.png
+    - assets/formInfoDetailAssets/arrow-left-1.svg
+    - assets/profile/save.png
+    #summary_screen
+    - assets/summary_screen/exclamation_mark.svg
+    - assets/summary_screen/warning_sign.svg
+    - assets/summary_screen/save_summary.svg
+    - assets/summary_screen/saved_summary.svg
+    - assets/summary_screen/exit_button.svg
+    # sidebar
+    - assets/sidebar/back_button.png
+    - assets/sidebar/watermark.png
+    # preview_screen
+    - assets/preview_screen/ok_button.png
+    - assets/preview_screen/back_button.png
+    # loading_screen
+    - assets/loading_screen/processing_image.png
     
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -101,8 +136,15 @@ flutter:
     - family: Mulish
       fonts:
         - asset: fonts/Mulish-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Mulish-Bold.ttf
           weight: 700
+        - asset: fonts/Mulish-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Mulish-Medium.ttf
+          weight: 500
         - asset: fonts/Mulish-Regular.ttf
+          weight: 400
   # fonts:
   #   - family: Schyler
   #     fonts:

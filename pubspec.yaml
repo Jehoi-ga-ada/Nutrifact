@@ -73,6 +73,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    # profile_form
+    - assets/splash_logo.png
+    - assets/splash_white_logo.png
+    - assets/formAllergiesAssets/Button Shape-1.svg
+    - assets/formAllergiesAssets/Button Shape.svg
+    - assets/formInfoDetailAssets/arrow-left-1.png
     # splash_screen
     - assets/splash_screen/splash_logo.png
     - assets/splash_screen/splash_white_logo.png

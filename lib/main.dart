@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:nutrifact/screens/profile_form.dart';
 import 'package:nutrifact/screens/home_screen.dart';
 import 'package:nutrifact/screens/profile.dart';
 import 'package:nutrifact/screens/summary_screen.dart';
@@ -21,14 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomeScreen(
-      //   cameras: cameras,
-      // ),
-      home: ProfileScreen(
-      ),
-      // home: SummaryScreen(
-
-      // ),
+      home: ProfileForm(),
     );
   }
 }

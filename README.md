@@ -1,16 +1,37 @@
-# nutrifact
+# NutriFact 🥦📱
 
-A new Flutter project.
+NutriFact is a mobile application that simplifies the understanding and comparison of nutritional information found on product labels. 
 
-## Getting Started
+## Overview 🌟
 
-This project is a starting point for a Flutter application.
+- Developed by a team of 5 passionate developers 🚀
+- Built using Flutter for cross-platform compatibility 📱
+- Leverages AI integration to process nutrition labels with ease 🤖
+- Users can snap a photo of a product's label for instant analysis 📸
+- Utilizes ChatGPT API to extract and summarize nutritional information 📊
+- Identifies potential allergies and categorizes product healthiness level 🥗
+- A practical solution addressing real-world challenges in nutrition labeling 🌍
 
-A few resources to get you started if this is your first Flutter project:
+## Contributors 👥
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Aretha Natalova W 🚀
+- Axel Nino Nakata 💡
+- Hans Robert G 🌟
+- Jehoiada Wong 🔧
+- Jessica Lynn W 📊
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Technologies Used 🛠️
+
+- Flutter
+- ChatGPT API
+
+## Installation Instructions 📥
+
+1. Clone the repository: `git clone https://github.com/Jehoi-ga-ada/nutrifact.git`
+2. Navigate to the project directory: `cd nutriFact-main`
+3. Install dependencies: `flutter pub get`
+4. Run the application: `flutter run`
+
+## Feedback and Contributions 🙌
+
+We welcome any feedback or contributions to improve NutriFact. Feel free to submit a pull request or open an issue if you have any suggestions or encounter any bugs.

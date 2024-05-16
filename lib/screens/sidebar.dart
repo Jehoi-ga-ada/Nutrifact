@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+// import 'package:is_first_run/is_first_run.dart';
+import 'package:nutrifact/screens/profile.dart';
+import 'package:nutrifact/screens/profile_form.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
@@ -8,6 +12,25 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
+  Future<void> goToProfile() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
+    if (isFirstTime) {
+      if(mounted){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ProfileForm()),
+        );
+      }
+    } else if (mounted) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfileScreen()),
+      );
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -78,55 +101,65 @@ class _SideBarState extends State<SideBar> {
 
                 SizedBox(height: 0.01*height),
 
-                const ListTile(
-                  title: Text(
-                    "Profile",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 64, 64, 64),
-                      fontSize: 18,
-                      fontFamily: 'Mulish',
+                GestureDetector(
+                  onTap:() => goToProfile(),
+                  child: const ListTile(
+                    title: Text(
+                      "Profile",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 64, 64, 64),
+                        fontSize: 18,
+                        fontFamily: 'Mulish',
+                      ),
                     ),
                   ),
                 ),
                 
                 SizedBox(height: 0.01*height),
 
-                const ListTile(
-                  title: Text(
-                    "History",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 64, 64, 64),
-                      fontSize: 18,
-                      fontFamily: 'Mulish',
+                GestureDetector(
+                  child: const ListTile(
+                    title: Text(
+                      "History",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 64, 64, 64),
+                        fontSize: 18,
+                        fontFamily: 'Mulish',
+                      ),
                     ),
                   ),
                 ),
                 
                 SizedBox(height: 0.01*height),
                 
-                const ListTile(
-                  title: Text(
-                    "Help",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 64, 64, 64),
-                      fontSize: 18,
-                      fontFamily: 'Mulish',
+                GestureDetector(
+                  child: const ListTile(
+                    title: Text(
+                      "Help",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 64, 64, 64),
+                        fontSize: 18,
+                        fontFamily: 'Mulish',
+                      ),
                     ),
                   ),
                 ),
 
                 SizedBox(height: 0.01*height),
 
-                const ListTile(
-                  title: Text(
-                    "About Us",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 64, 64, 64),
-                      fontSize: 18,
-                      fontFamily: 'Mulish',
+                GestureDetector(
+                  child: const ListTile(
+                    title: Text(
+                      "About Us",
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 64, 64, 64),
+                        fontSize: 18,
+                        fontFamily: 'Mulish',
+                      ),
                     ),
                   ),
                 ),
+
               ],
             ),
           ),

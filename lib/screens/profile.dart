@@ -260,7 +260,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (BuildContext context) {
         return FractionallySizedBox(
           heightFactor: 0.9,
-            child: ProfileForm(
+            child: ProfileEditForm(
               updateProfile: updateProfile,
             )
         );
@@ -294,9 +294,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           height: 26,
           width: 26,
         ),
-        onPressed: () {
-          // Add functionality to go back
-        },
+        onPressed: () => Navigator.pop(context),
                   ),
                 ),
         title: const Text(
@@ -471,16 +469,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-class ProfileForm extends StatefulWidget {
+class ProfileEditForm extends StatefulWidget {
   final Function updateProfile;
 
-  const ProfileForm({super.key, required this.updateProfile});
+  const ProfileEditForm({super.key, required this.updateProfile});
 
   @override
-  State<ProfileForm> createState() => _ProfileFormState();
+  State<ProfileEditForm> createState() => _ProfileEditFormState();
 }
 
-class _ProfileFormState extends State<ProfileForm> {
+class _ProfileEditFormState extends State<ProfileEditForm> {
   Color containerColor = Colors.transparent;
   bool isMaleChecked = false;
   bool isFemaleChecked = false;
@@ -1211,7 +1209,7 @@ class _ProfileFormState extends State<ProfileForm> {
                                   runSpacing: 10.0,
                                   children: [
                                     for (String allergen in allergies)
-                                      Container(
+                                      SizedBox(
                                         height: 37,
                                         child: Chip(
                                           label: Text(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter/services.dart'; // Add this import for TextInputFormatter
+import 'package:flutter/services.dart';
+import 'package:nutrifact/screens/profile.dart';
+import 'package:shared_preferences/shared_preferences.dart'; // Add this import for TextInputFormatter
 
 class ProfileForm extends StatefulWidget {
   const ProfileForm({super.key});
@@ -24,6 +26,21 @@ class _ProfileFormState extends State<ProfileForm> {
   Color borderColor = Colors.grey;
 
   List<String> allergies = [];
+
+  Future<void> allGood() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
+    if (mounted && isFirstTime){
+      prefs.setBool('isFirstTime', false);
+      Navigator.pushReplacement(
+        context, 
+        MaterialPageRoute(builder: (context) => const ProfileScreen()),
+      );
+    } else if(mounted) {
+      Navigator.pop(context);
+    }
+  }
 
   void addAllergen(String allergen) {
     setState(() {
@@ -53,9 +70,8 @@ class _ProfileFormState extends State<ProfileForm> {
                 left: 0.06 * MediaQuery.of(context).size.width,
                 top: 0.06 * MediaQuery.of(context).size.height,
                 child: InkWell(
-                  onTap: () {
-                    // Handle back button tap
-                  },
+                  onTap: () => Navigator.pop(context)
+                  ,
                   child: Image.asset(
                     'assets/formInfoDetailAssets/arrow-left-1.png',
                     width: 0.06 * MediaQuery.of(context).size.width,
@@ -678,7 +694,7 @@ class _ProfileFormState extends State<ProfileForm> {
                             children: [
 
                               for (String allergen in allergies)
-                                Container(
+                                SizedBox(
                                   height: 37,
                                   child: Chip(
                                     label: Text(
@@ -818,9 +834,7 @@ class _ProfileFormState extends State<ProfileForm> {
           width: double.infinity, // Make the container fill the width
           margin: const EdgeInsets.only(top: 10, bottom: 30), // Apply margins
           child: ElevatedButton(
-            onPressed: () {
-              // Add your functionality here
-            },
+            onPressed: () => allGood(),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFF8233)), // Button color
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(

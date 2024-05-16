@@ -13,7 +13,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final width = size.width;
     final height = size.height;
     return Scaffold(  
       backgroundColor:const Color.fromRGBO(175, 177, 182, 1),

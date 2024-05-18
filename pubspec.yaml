@@ -43,6 +43,7 @@ dependencies:
   media_scanner: ^2.1.0
   flutter_svg: ^2.0.10+1
   shared_preferences: ^2.2.3
+  flutter_launcher_icons: ^0.13.1
 
 flutter_native_splash:
   color: '#fe6d02'
@@ -60,7 +61,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
-  flutter_launcher_icons: "^0.9.2"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,6 +75,8 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/logo_noshadow.png
+    - assets/logo_shadow.png
     # profile_form
     - assets/formAllergiesAssets/Button Shape-1.svg
     - assets/formAllergiesAssets/Button Shape.svg
@@ -118,6 +120,9 @@ flutter:
     - assets/preview_screen/back_button.png
     # loading_screen
     - assets/loading_screen/processing_image.png
+    #aboutus
+    - assets/aboutus/teampic.png
+    - assets/aboutus/logo.png
     
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -845,37 +845,6 @@ class _ProfileFormState extends State<ProfileForm> {
 
   // All good Button
   // ==============================
-      // Container(
-      //   margin: const EdgeInsets.symmetric(horizontal: 40),
-      //   child: Container(
-      //     width: double.infinity, // Make the container fill the width
-      //     margin: const EdgeInsets.only(top: 10, bottom: 30), // Apply margins
-      //     child: ElevatedButton(
-      //       onPressed: () => allGood(),
-      //       style: ButtonStyle(
-      //         backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFF8233)), // Button color
-      //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-      //           RoundedRectangleBorder(
-      //             borderRadius: BorderRadius.circular(15), // Rounded corners
-      //           ),
-      //         ),
-      //       ),
-      //       child: const Padding(
-      //         padding: EdgeInsets.all(12.0),
-      //         child: Text(
-      //           'All good!',
-      //           style: TextStyle(
-      //             fontFamily: 'Mulish',
-      //             fontWeight: FontWeight.bold,
-      //             fontSize: 16,
-      //             color: Colors.white,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
-
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 40),
         child: Container(

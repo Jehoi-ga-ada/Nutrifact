@@ -27,6 +27,13 @@ class _ProfileFormState extends State<ProfileForm> {
 
   List<String> allergies = [];
 
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController heightController = TextEditingController();
+  TextEditingController weightController = TextEditingController();
+  String genderController = '';
+  String activityLevelController = '';
+
   Future<void> allGood() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
@@ -170,6 +177,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextField(
+                    controller : nameController,
                     decoration: InputDecoration(
                       // border: InputBorder.none, // Hide input box border
                      enabledBorder: OutlineInputBorder(
@@ -240,6 +248,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: heightController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
@@ -296,6 +305,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: TextField(
+                          controller: weightController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
@@ -363,6 +373,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 5.0),
                         child: TextField(
+                          controller: ageController,
                           decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(25.0),
@@ -410,6 +421,7 @@ class _ProfileFormState extends State<ProfileForm> {
                               isAge = false;
                               isHeight = false;
                               isWeight = false;
+                              genderController = 'Male';
                             });
                           },
                           child: Container(
@@ -437,6 +449,7 @@ class _ProfileFormState extends State<ProfileForm> {
                             setState(() {
                               isMaleChecked = false;
                               isFemaleChecked = true;
+                              genderController = 'Female';
                             });
                           },
                           child: Container(
@@ -511,6 +524,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       isAge = false;
                       isHeight = false;
                       isWeight = false;
+                      activityLevelController = 'Sedentary';
                     });
                   },
                   child: Container(
@@ -547,6 +561,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       isAge = false;
                       isHeight = false;
                       isWeight = false;
+                      activityLevelController = 'Light';
                     });
                   },
                   child: Container(
@@ -593,6 +608,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       isAge = false;
                       isHeight = false;
                       isWeight = false;
+                      activityLevelController = 'Moderate';
                     });
                   },
                   child: Container(
@@ -629,6 +645,7 @@ class _ProfileFormState extends State<ProfileForm> {
                       isAge = false;
                       isHeight = false;
                       isWeight = false;
+                      activityLevelController = 'Active';
                     });
                   },
                   child: Container(
@@ -828,13 +845,69 @@ class _ProfileFormState extends State<ProfileForm> {
 
   // All good Button
   // ==============================
+      // Container(
+      //   margin: const EdgeInsets.symmetric(horizontal: 40),
+      //   child: Container(
+      //     width: double.infinity, // Make the container fill the width
+      //     margin: const EdgeInsets.only(top: 10, bottom: 30), // Apply margins
+      //     child: ElevatedButton(
+      //       onPressed: () => allGood(),
+      //       style: ButtonStyle(
+      //         backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFF8233)), // Button color
+      //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+      //           RoundedRectangleBorder(
+      //             borderRadius: BorderRadius.circular(15), // Rounded corners
+      //           ),
+      //         ),
+      //       ),
+      //       child: const Padding(
+      //         padding: EdgeInsets.all(12.0),
+      //         child: Text(
+      //           'All good!',
+      //           style: TextStyle(
+      //             fontFamily: 'Mulish',
+      //             fontWeight: FontWeight.bold,
+      //             fontSize: 16,
+      //             color: Colors.white,
+      //           ),
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
+
       Container(
         margin: const EdgeInsets.symmetric(horizontal: 40),
         child: Container(
           width: double.infinity, // Make the container fill the width
           margin: const EdgeInsets.only(top: 10, bottom: 30), // Apply margins
           child: ElevatedButton(
-            onPressed: () => allGood(),
+            onPressed: () {
+              if (nameController.text.isEmpty ||
+                  ageController.text.isEmpty ||
+                  heightController.text.isEmpty ||
+                  weightController.text.isEmpty ||
+                  genderController.isEmpty ||
+                  activityLevelController.isEmpty) {
+                // Show an alert dialog if any field is empty
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Incomplete Information'),
+                    content: const Text('Please fill in all fields before proceeding.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('OK'),
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                // Proceed if all fields are filled
+                allGood();
+              }
+            },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFFFF8233)), // Button color
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -858,6 +931,7 @@ class _ProfileFormState extends State<ProfileForm> {
           ),
         ),
       ),
+
 
           ],
         ),

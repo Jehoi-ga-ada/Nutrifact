@@ -4,6 +4,26 @@ import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:flutter/services.dart';
 
 class ProfileScreen extends StatefulWidget {
+  // final String name;
+  // final int age;
+  // final String gender;
+  // final int height;
+  // final int weight;
+  // final double bmi;
+  // final String activityLevel;
+  // final List<String> allergies;
+  
+  // const ProfileScreen({
+  //   super.key,
+  //   required this.name,
+  //   required this.age,
+  //   required this.gender,
+  //   required this.height,
+  //   required this.weight,
+  //   required this.bmi,
+  //   required this.activityLevel,
+  //   required this.allergies,
+  // });
   const ProfileScreen({super.key});
 
   @override
@@ -245,6 +265,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
   double bmi = 17.4;
   String activityLevel = "Moderate";
   List<String> allergies = ['Dairy', 'Fish', 'Strawberries', 'Peanuts'];
+  // late String name;
+  // late int age;
+  // late String gender;
+  // late int height;
+  // late int weight;
+  // late double bmi;
+  // late String activityLevel;
+  // late List<String> allergies;
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   name = widget.name;
+  //   age = widget.age;
+  //   gender = widget.gender;
+  //   height = widget.height;
+  //   weight = widget.weight;
+  //   bmi = widget.bmi;
+  //   activityLevel = widget.activityLevel;
+  //   allergies = widget.allergies;
+  // }
 
   // == EDIT POP UP == //
   void _showEditProfileForm(BuildContext context) {
@@ -280,7 +321,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       this.allergies = allergies;
     });
   }
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

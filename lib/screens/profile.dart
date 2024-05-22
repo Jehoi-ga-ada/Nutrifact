@@ -661,7 +661,7 @@ class _ProfileEditFormState extends State<ProfileEditForm> {
                           ),
                           inputFormatters: <TextInputFormatter>[
                             FilteringTextInputFormatter.allow(
-                                RegExp(r'[a-zA-Z]')), // Allow only digits
+                                RegExp(r'[a-zA-Z\s]')), // Allow only digits
                           ],
                         ),
                       ),

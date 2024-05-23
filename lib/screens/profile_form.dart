@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 import 'package:nutrifact/screens/profile.dart';
-import 'package:shared_preferences/shared_preferences.dart'; // Add this import for TextInputFormatter
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:nutrifact/models/profile_model.dart';
+import 'package:nutrifact/utils/profile_storage.dart';
 
 class ProfileForm extends StatefulWidget {
   const ProfileForm({super.key});
@@ -34,15 +36,38 @@ class _ProfileFormState extends State<ProfileForm> {
   String genderController = '';
   String activityLevelController = '';
 
+  final ProfileStorage storage = ProfileStorage();
+
+  double calculateBMI() {
+    if (heightController.text.isNotEmpty && weightController.text.isNotEmpty) {
+      double height = double.parse(heightController.text) / 100; // Convert to meters
+      double weight = double.parse(weightController.text);
+      double bmi = weight / (height * height);
+      return bmi;
+    }
+    return 0;
+  }
+
   Future<void> allGood() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
     if (mounted && isFirstTime){
       prefs.setBool('isFirstTime', false);
+      Profile profile = Profile(
+        name: nameController.text,
+        age: int.parse(ageController.text),
+        gender: genderController,
+        height: int.parse(heightController.text),
+        weight: int.parse(weightController.text),
+        bmi: calculateBMI(),
+        activityLevel: activityLevelController,
+        allergies: allergies,
+      );
+      storage.writeProfile(profile);
       Navigator.pushReplacement(
         context, 
-        MaterialPageRoute(builder: (context) => const ProfileScreen()),
+        MaterialPageRoute(builder: (context) => ProfileScreen(profile:profile)),
       );
     } else if(mounted) {
       Navigator.pop(context);

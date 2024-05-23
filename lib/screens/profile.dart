@@ -2,29 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:flutter/services.dart';
+import 'package:nutrifact/models/profile_model.dart';
+import 'package:nutrifact/utils/profile_storage.dart';
 
 class ProfileScreen extends StatefulWidget {
-  // final String name;
-  // final int age;
-  // final String gender;
-  // final int height;
-  // final int weight;
-  // final double bmi;
-  // final String activityLevel;
-  // final List<String> allergies;
+  final Profile profile;
   
-  // const ProfileScreen({
-  //   super.key,
-  //   required this.name,
-  //   required this.age,
-  //   required this.gender,
-  //   required this.height,
-  //   required this.weight,
-  //   required this.bmi,
-  //   required this.activityLevel,
-  //   required this.allergies,
-  // });
-  const ProfileScreen({super.key});
+  const ProfileScreen({
+    super.key,
+    required this.profile
+  });
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -257,35 +244,23 @@ class BMIIndicator extends StatelessWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String name = 'Maddie';
-  int age = 20;
-  String gender = 'Female';
-  int height = 161;
-  int weight = 45;
-  double bmi = 17.4;
-  String activityLevel = "Moderate";
-  List<String> allergies = ['Dairy', 'Fish', 'Strawberries', 'Peanuts'];
-  // late String name;
-  // late int age;
-  // late String gender;
-  // late int height;
-  // late int weight;
-  // late double bmi;
-  // late String activityLevel;
-  // late List<String> allergies;
+  // String name = 'Maddie';
+  // int age = 20;
+  // String gender = 'Female';
+  // int height = 161;
+  // int weight = 45;
+  // double bmi = 17.4;
+  // String activityLevel = "Moderate";
+  // List<String> allergies = ['Dairy', 'Fish', 'Strawberries', 'Peanuts'];
+  late Profile profile;
+  final ProfileStorage storage = ProfileStorage();
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   name = widget.name;
-  //   age = widget.age;
-  //   gender = widget.gender;
-  //   height = widget.height;
-  //   weight = widget.weight;
-  //   bmi = widget.bmi;
-  //   activityLevel = widget.activityLevel;
-  //   allergies = widget.allergies;
-  // }
+  @override
+  void initState() {
+    super.initState();
+    profile = widget.profile;
+  }
+
 
   // == EDIT POP UP == //
   void _showEditProfileForm(BuildContext context) {
@@ -311,14 +286,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void updateProfile(String name, int age, int height, int weight, String gender, double bmi, String activityLevel, List<String> allergies) {
     setState(() {
-      this.name = name;
-      this.height = height;
-      this.weight = weight;
-      this.age = age;
-      this.gender = gender;
-      this.bmi = bmi;
-      this.activityLevel = activityLevel;
-      this.allergies = allergies;
+      profile = Profile(
+        name : name,
+        height : height,
+        weight : weight,
+        age : age,
+        gender : gender,
+        bmi : bmi,
+        activityLevel : activityLevel,
+        allergies : allergies,
+      );
+      storage.writeProfile(profile);
     });
   }
   
@@ -371,15 +349,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             CircleAvatar(
               radius: 60,
               backgroundColor: Colors.grey[200],
-              child: Text(name[0],
+              child: Text(profile.name[0],
                   style: const TextStyle(
                       fontSize: 40,
-                      color: Color.fromRGBO(187, 191, 194,
-                          1))), // Displays the first letter of the name
+                      color: Color.fromRGBO(187, 191, 194, 1))), // Displays the first letter of the name
             ),
             const SizedBox(height: 10),
             Text(
-              name,
+              profile.name,
               style: const TextStyle(
                 fontFamily: 'Mulish',
                 fontWeight: FontWeight.w700,
@@ -402,20 +379,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: <Widget>[
                 InfoCard(
                   label: 'Age',
-                  value: '$age y.o.',
+                  value: '${profile.age} y.o.',
                   iconPath: 'assets/profile/age.png',
                 ),
                 InfoCard(
                     label: 'Gender',
-                    value: gender,
+                    value: profile.gender,
                     iconPath: 'assets/profile/gender.png'),
                 InfoCard(
                     label: 'Height',
-                    value: '$height cm',
+                    value: '${profile.height} cm',
                     iconPath: 'assets/profile/height.png'),
                 InfoCard(
                     label: 'Weight',
-                    value: '$weight kg',
+                    value: '${profile.weight} kg',
                     iconPath: 'assets/profile/weight.png'),
               ],
             ),
@@ -430,8 +407,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               crossAxisCount: 2,
               childAspectRatio: (150 / 120),
               children: <Widget>[
-                ActivityCard(level:activityLevel),
-                BMIIndicator(bmi: bmi),
+                ActivityCard(level:profile.activityLevel),
+                BMIIndicator(bmi: profile.bmi),
               ],
             ),
 
@@ -472,7 +449,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 spacing: 12.0,
                                 // runSpacing: 10.0,
                                 children: [
-                                  for (String allergen in allergies)
+                                  for (String allergen in profile.allergies)
                                     Chip(
                                       label: Text(
                                         allergen,
@@ -544,16 +521,18 @@ class _ProfileEditFormState extends State<ProfileEditForm> {
   double bmiController = 0;
 
   void calculateBMI() {
-  if (heightController.text.isNotEmpty && weightController.text.isNotEmpty) {
-    double height = double.parse(heightController.text); 
-    double weight = double.parse(weightController.text);
-    height /= 100;
-    double bmi = weight / (height * height);
-    setState(() {
-      bmiController = bmi; 
-    });
+    if (heightController.text.isNotEmpty && weightController.text.isNotEmpty) {
+      double height = double.parse(heightController.text); 
+      double weight = double.parse(weightController.text);
+      height /= 100;
+      double bmi = weight / (height * height);
+      setState(() {
+        bmiController = bmi; 
+      });
+    }
   }
-}
+  
+
 
   void addAllergen(String allergen) {
     setState(() {

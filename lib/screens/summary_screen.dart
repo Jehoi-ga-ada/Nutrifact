@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 ////brisik bgt warningnya anjir
 
 class SummaryScreen extends StatefulWidget {
+  const SummaryScreen({super.key});
+
   @override
   SummaryState createState() => SummaryState();
 }

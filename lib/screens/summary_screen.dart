@@ -14,32 +14,52 @@ class SummaryState extends State<SummaryScreen> {
   bool isExpanded = false;
   bool isSaved = false;
 
-  final List<Map<String, dynamic>> nutritionData = [
+  final Map<String, dynamic> data = {
+    "productName": "Häagen-Dazs Ice Cream",
+    "calories": {
+      "perServing": 330,
+      "perContainer": 870
+    },
+    "nutritionData": [
       {"name": "Fats", "amount": "17g", "dv": "42% DV"},
       {"name": "Carbohydrates", "amount": "40g", "dv": "16% DV"},
       {"name": "Proteins", "amount": "4g", "dv": "4% DV"},
-    ];
-
-  final List<String> recommendations = [
+    ],
+    "recommendations": [
       "Limit portion size",
       "Perfect for special treats, not daily snacks"
-    ];
-
-  final List<String> alternatives = [
+    ],
+    "alternatives": [
       "Greek Yogurt",
       "Fruits",
       "Smoothies"
-    ];
+    ],
+    "allergens": ["milk"],
+    "warnings": [
+      {"name": "Saturated Fat", "amount": "17g", "dv": "42% DV"},
+      {"name": "Trans Fat", "amount": "1g", "dv": "5% DV"},
+    ],
+    "grade": 3
+  };
 
-  final String productName = "Häagen-Dazs Ice Cream";
-
-  final int calPerServing = 330;
-
-  final int calPerContainer = 870;
+  bool validateWarnings(List<dynamic> warnings) {
+  return warnings.every((item) {
+    return item is Map<String, dynamic> &&
+           item.containsKey('name') &&
+           item.containsKey('amount') &&
+           item.containsKey('dv');
+  });
+}
 
   @override
 
   Widget build(BuildContext context) {
+    print("Data before building: ${data}"); //check data passing, nanti diremove
+
+    // Safe cast to List<dynamic>; validate it's not empty and has the correct structure
+    List<dynamic> warnings = data['warnings'] as List<dynamic>? ?? [];
+    bool isValidWarnings = validateWarnings(warnings);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -54,14 +74,14 @@ class SummaryState extends State<SummaryScreen> {
                     onPressed: () => Navigator.of(context).pop(),
                     icon: SvgPicture.asset(
                       'assets/summary_screen/exit_button.svg',
-                      width: 26, // Specify width
-                      height: 26, // Specify height
+                      width: 26,
+                      height: 26,
                     ),
                   ),
                   IconButton(
                     onPressed: () {
                       setState(() {
-                        isSaved = !isSaved; // Toggle save state
+                        isSaved = !isSaved;
                       });
                     },
                     icon: SvgPicture.asset(
@@ -74,7 +94,7 @@ class SummaryState extends State<SummaryScreen> {
               ),
               SizedBox(height: 19),
               Text(
-                productName,
+                data['productName'],
                 style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 24,
@@ -82,18 +102,23 @@ class SummaryState extends State<SummaryScreen> {
                   color: Colors.black,
                 ),
               ),
-              SizedBox(height: 30),  // Adding space between title and next section
-              calorieRow(calPerServing, calPerContainer),
               SizedBox(height: 30),
-              nutritionWarnings(2), //passing parameter belom ada utk nutrition contents
+              calorieRow(data['calories']['perServing'], data['calories']['perContainer']),
+              if (isValidWarnings) 
+                Column(
+                  children: [
+                    SizedBox(height: 30),
+                    nutritionWarnings(warnings.cast<Map<String, dynamic>>()),
+                  ],
+              ),
               SizedBox(height: 35),
-              allergenBox(context, ['milk']),  // Displays warning with these allergens
+              allergenBox(context, data['allergens']),
               SizedBox(height: 25),
-              Divider(color: Colors.grey[300], thickness: 1), // Divider before the dropdown
+              Divider(color: Colors.grey[300], thickness: 1),
               customCollapsibleNutritionDetails(),
-              Divider(color: Colors.grey[300], thickness: 1), // Divider before the dropdown
-              gradeDisplay(2),
-              Text( //bikin center
+              Divider(color: Colors.grey[300], thickness: 1),
+              gradeDisplay(data['grade']),
+              Text(
                 'Based on highlighted nutrients and additional nutritional information',
                 style: TextStyle(
                   fontFamily: 'Mulish',
@@ -104,7 +129,7 @@ class SummaryState extends State<SummaryScreen> {
               ),
               SizedBox(height: 17),
               Divider(color: Colors.grey[300], thickness: 1),
-              showRecommendations(context, recommendations, alternatives),
+              showRecommendations(context, data['recommendations'], data['alternatives']),
             ],
           ),
         ),
@@ -115,13 +140,13 @@ class SummaryState extends State<SummaryScreen> {
 
   Widget calorieRow(int calPerServing, int calPerContainer) { //nnti disini hrus bs diedit parameternya :1
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween, // This will space the elements evenly across the horizontal axis
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        calorieInfo(calPerServing, 'cal', 'per serving'), // Calorie info for per serving
+        calorieInfo(calPerServing, 'cal', 'per serving'),
         verticalDivider(),
         percentageInfo(20), // Custom widget for daily needs with formatted text
         verticalDivider(),
-        calorieInfo(calPerContainer, 'cal', 'per container'), // Total calories per container
+        calorieInfo(calPerContainer, 'cal', 'per container'),
       ],
     );
   }
@@ -130,7 +155,7 @@ class SummaryState extends State<SummaryScreen> {
     return Container(
       height: 50, // Adjust height to match your row's content
       width: 3, // Can be thinner or thicker as per your design
-      color: Color.fromRGBO(252, 223, 181, 1), // Choose a color that fits the design
+      color: Color.fromRGBO(252, 223, 181, 1),
     );
   }
 
@@ -140,7 +165,7 @@ class SummaryState extends State<SummaryScreen> {
         style: TextStyle(
           fontFamily: 'Mulish',
           fontSize: 16,
-          color: Colors.black, // Default text color
+          color: Colors.black,
         ),
         children: <TextSpan>[
           TextSpan(
@@ -176,11 +201,11 @@ class SummaryState extends State<SummaryScreen> {
       text: TextSpan(
         style: TextStyle(
           fontFamily: 'Mulish',
-          color: Colors.black, // Default text color
+          color: Colors.black,
         ),
         children: <TextSpan>[
           TextSpan(
-            text: '$percentage% of\n', // Use \n to force the text onto the next line
+            text: '$percentage% of\n',
             style: TextStyle(fontSize: 17, color: Color.fromRGBO(255, 99, 0, 1), fontWeight: FontWeight.w500),
           ),
           TextSpan(
@@ -192,119 +217,106 @@ class SummaryState extends State<SummaryScreen> {
     );
   }
 
-  Widget nutritionWarnings(int count) {
-    List<Widget> allWarnings = List.generate(
-      count,
-      (index) => warningBox('Saturated Fat', '20g', '28% DV'), //Example warning content
-    );
+  Widget nutritionWarnings(List<Map<String, dynamic>> warnings) {
+    List<Widget> allWarnings = warnings.map((warning) {
+      return warningBox(warning['name'], warning['amount'], warning['dv']);
+    }).toList();
 
-    List<Widget> firstRow = [];
-    List<Widget> secondRow = [];
-
-    for (int i = 0; i < allWarnings.length; i++) {
-      if (i < 3) {
-        firstRow.add(allWarnings[i]);
-      } else {
-        secondRow.add(allWarnings[i]);
-      }
+    // Dynamically splitting into rows if more than 3 warnings
+    List<Widget> rows = [];
+    for (int i = 0; i < allWarnings.length; i += 3) {
+      int end = (i + 3 > allWarnings.length) ? allWarnings.length : i + 3;
+      rows.add(Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: allWarnings.sublist(i, end),
+      ));
+      if (i + 3 < allWarnings.length) rows.add(SizedBox(height: 15));
     }
 
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: firstRow,
-        ),
-        if (secondRow.isNotEmpty) SizedBox(height: 15),  // Space between rows
-        if (secondRow.isNotEmpty)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: secondRow,
-          ),
-      ],
-    );
+    return Column(children: rows);
   }
 
   Widget warningBox(String title, String primaryText, String secondaryText) {
-    return Container(
-      width: 95,
-      height: 95,
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(255, 239, 221, 1), // Adjusted opacity to 1
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch, // Stretch the columns across the box width
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 7),
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(254, 109, 2, 1), // Adjusted opacity to 1
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(15),
-                    topRight: Radius.circular(15),
+      return Container(
+        width: 95,
+        height: 95,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(255, 239, 221, 1),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 7),
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(254, 109, 2, 1),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
+                    ),
                   ),
-                ),
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Center(
-                  child: RichText(
-                    text: TextSpan(
-                      style: TextStyle(
-                        fontFamily: 'Mulish',
-                        color: Colors.black,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: '$primaryText\n',
-                          style: TextStyle(
-                            fontSize: 18, // Larger font size for "20g"
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        TextSpan(
-                          text: secondaryText, // "28% DV"
-                          style: TextStyle(
-                            fontSize: 14, // Smaller font size for "28% DV"
-                          ),
-                        ),
-                      ],
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: SvgPicture.asset(
-              'assets/summary_screen/exclamation_mark.svg', // Ensure you have this asset in your project
-              width: 35,
-              height: 35,
+                Expanded(
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontFamily: 'Mulish',
+                          color: Colors.black,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: '$primaryText\n',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                          TextSpan(
+                            text: secondaryText,
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: SvgPicture.asset(
+                'assets/summary_screen/exclamation_mark.svg',
+                width: 35,
+                height: 35,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
 
   Widget allergenBox(BuildContext context, List<String> allergens) {
     String text;
-    Widget icon = SizedBox(width: 0);  // Adjusted to ensure spacing is correct even when no icon
-    Color backgroundColor = Color.fromRGBO(255, 193, 103, 1);  // Default color for no allergens
-    Color textColor = Colors.black;  // Default text color for no allergens
+    Widget icon = SizedBox(width: 0);
+    Color backgroundColor = Color.fromRGBO(255, 193, 103, 1);
+    Color textColor = Colors.black;
 
     // Determine the text and possibly add an icon based on allergens
     if (allergens.isEmpty) {
@@ -371,7 +383,7 @@ class SummaryState extends State<SummaryScreen> {
         Visibility(
           visible: isExpanded,
           child: Column(
-            children: nutritionData.map((item) {
+            children: data['nutritionData'].map<Widget>((item) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
                 child: Row(
@@ -404,11 +416,27 @@ class SummaryState extends State<SummaryScreen> {
                 ),
               );
             }).toList(),
-            // SizedBox(height: 10),
           ),
         ),
       ],
     );
+  }
+
+  Color getColorForScore(int score) {
+    switch (score) {
+      case 1:
+        return Colors.red; // Red for the lowest score
+      case 2:
+        return Colors.redAccent; // Slightly lighter red
+      case 3:
+        return Colors.amber; // Yellow for mid score
+      case 4:
+        return Colors.lightGreen; // Light green for good
+      case 5:
+        return Colors.green; // Green for the best score
+      default:
+        return Colors.grey; // Handle unexpected scores
+    }
   }
 
   Widget gradeDisplay(int score) {
@@ -425,8 +453,18 @@ class SummaryState extends State<SummaryScreen> {
           ),
           children: [
             TextSpan(text: 'Grade\n', style: TextStyle(fontWeight: FontWeight.w700, fontSize: 22)),
-            TextSpan(text: '$score ', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 50, color: Color.fromRGBO(255, 28, 82, 1))),
-            TextSpan(text: '/ 5', style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30, color: Color.fromRGBO(247, 145, 1, 1)))
+            TextSpan(
+              text: '$score ', 
+              style: TextStyle(
+                fontWeight: FontWeight.w500, 
+                fontSize: 50, 
+                color: getColorForScore(score) // Apply dynamic color based on score
+              )
+            ),
+            TextSpan(
+              text: '/ 5', 
+              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 30, color: Color.fromRGBO(247, 145, 1, 1))
+            ),
           ],
         ),
       ),
@@ -449,7 +487,7 @@ class SummaryState extends State<SummaryScreen> {
             '• $item',
             style: TextStyle(fontSize: 15, color: Colors.black),
           ),
-        )),
+        )).toList(),
         SizedBox(height: 14),
         Text(
           'Alternatives:',

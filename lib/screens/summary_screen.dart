@@ -54,7 +54,7 @@ class SummaryState extends State<SummaryScreen> {
   @override
 
   Widget build(BuildContext context) {
-    print("Data before building: ${data}"); //check data passing, nanti diremove
+    print("Data before building: $data"); //check data passing, nanti diremove
 
     // Safe cast to List<dynamic>; validate it's not empty and has the correct structure
     List<dynamic> warnings = data['warnings'] as List<dynamic>? ?? [];
@@ -487,7 +487,7 @@ class SummaryState extends State<SummaryScreen> {
             '• $item',
             style: TextStyle(fontSize: 15, color: Colors.black),
           ),
-        )).toList(),
+        )),
         SizedBox(height: 14),
         Text(
           'Alternatives:',

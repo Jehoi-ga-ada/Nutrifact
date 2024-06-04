@@ -115,6 +115,7 @@ class SummaryState extends State<SummaryScreen> {
 
 
   Widget calorieRow(int calPerServing, int calPerContainer) { //nnti disini hrus bs diedit parameternya :1
+    calPerContainer = calPerContainer ?? calPerServing;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

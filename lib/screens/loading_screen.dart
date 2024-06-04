@@ -1,11 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
-  final List<File> imagesList;
   const LoadingScreen({
-    super.key, 
-    required this.imagesList
+    super.key
   });
 
   @override

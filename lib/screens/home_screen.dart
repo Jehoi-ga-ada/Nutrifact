@@ -25,6 +25,38 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   bool nutritionLabelConfirmed = false;
   bool ingredientsLabelConfirmed = false;
+  final String prompt = """
+  You are tasked to reply in English regardless of language seen in image and format your answer in JSON accordingly. Below is an example for your reference:
+
+  {
+      "productName": "Häagen-Dazs Ice Cream",
+      "calories": {
+        "perServing": 330,
+        "perContainer": 870
+      },
+      "nutritionData": [
+        {"name": "Fats", "amount": "17g", "dv": "42% DV"},
+        {"name": "Carbohydrates", "amount": "40g", "dv": "16% DV"},
+      ],
+      "recommendations": [
+        "Limit portion size",
+        "Perfect for special treats, not daily snacks"
+      ],
+      "alternatives": [
+        "Greek Yogurt",
+        "Fruits",
+        "Smoothies"
+      ],
+      "allergens": ["milk"],
+      "warnings": [
+        {"name": "Saturated Fat", "amount": "17g", "dv": "42% DV"},
+        {"name": "Trans Fat", "amount": "1g", "dv": "5% DV"},
+      ],
+      "grade": 3
+  };
+
+  You are required to fill every keys with values (if available) seen from 2 images sent to you. You will expect first image of nutrition label and second image of ingredient list in every inquiry sent. You do not need to provide any additional text; just the required information in JSON.
+  """;
 
   Future<File> saveImage(XFile image) async {
     final downloadPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_PICTURES);
@@ -77,8 +109,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   imagesList.add(file);
                 });
                 
-                await ApiService.sendMessage(
-                  message: 'Hello! can you tell me what picture this is',
+                Map<String, dynamic> data = await ApiService.sendMessage(
+                  message: prompt,
                   modelId: 'gpt-4o',
                   imagesList: imagesList
                 );
@@ -86,7 +118,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pushReplacement(
                   context, 
                   MaterialPageRoute(
-                    builder: (context) => const SummaryScreen(),
+                    builder: (context) => SummaryScreen(
+                      data: data,
+                    ),
                   ),
                 );
                 setState(() {

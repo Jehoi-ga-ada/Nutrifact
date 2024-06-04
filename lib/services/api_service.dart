@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:nutrifact/constants/api_consts.dart';
 import 'package:nutrifact/models/models_model.dart';
-import 'package:mime/mime.dart';
 
 class ApiService{
   static Future<List<ModelsModel>> getModels() async {
@@ -31,7 +30,7 @@ class ApiService{
     }
   }
   // send message
-  static Future<void> sendMessage({
+  static Future<Map<String, dynamic>> sendMessage({
     required String message,
     required String modelId,
     required List<File> imagesList,
@@ -64,7 +63,7 @@ class ApiService{
             }
           ]}
         ],
-        'max_tokens': 1000,
+        'max_tokens': 3000,
       };
 
       // Make the HTTP POST request
@@ -83,9 +82,16 @@ class ApiService{
         throw HttpException(jsonResponse['error']["message"]);
       }
 
+      String content = jsonResponse['choices'][0]['message']['content'];
+      content = content.replaceAll(RegExp(r'json'), '');
+      content = content.replaceAll(RegExp(r'`'), '');
       if (jsonResponse['choices'] != null && jsonResponse['choices'].length > 0) {
-        print("Response: ${jsonResponse['choices'][0]['message']['content']}");
+        print("Response: $content");
       }
+      Map<String, dynamic> jsonSummary = jsonDecode(content);
+
+      return jsonSummary;
+
     } catch (e) {
       print("Error: $e");
       rethrow;

@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<File> saveImage(XFile image) async {
     final downloadPath = await ExternalPath.getExternalStoragePublicDirectory(ExternalPath.DIRECTORY_PICTURES);
-    final fileName = '${DateTime.now().millisecondsSinceEpoch}.png';
+    final fileName = '${DateTime.now().millisecondsSinceEpoch}.jpeg';
     final file = File('$downloadPath/$fileName');
 
     try{

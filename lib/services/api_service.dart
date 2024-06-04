@@ -38,18 +38,31 @@ class ApiService{
   }) async {
     try {
       // Convert images to base64
-      String combinedMessage = message;
+      List<String> base64images = [];
       for (var image in imagesList) {
-        String mimeType = lookupMimeType(image.path) ?? 'application/octet-stream';
         String base64Image = base64Encode(image.readAsBytesSync());
-        combinedMessage += '\nImage: data:$mimeType;base64,$base64Image';
+        base64images.add(base64Image);
       }
 
       // Prepare the payload
       var payload = {
         'model': modelId,
         'messages': [
-          {'role': 'user', 'content': combinedMessage}
+          {'role': 'user', 'content': [
+            {'type': 'text', 'text':message},
+            {
+              'type': 'image_url',
+              'image_url': {
+                'url': 'data:image/jpeg;base64,${base64images[0]}',
+              }
+            },
+            {
+              'type': 'image_url',
+              'image_url': {
+                'url': 'data:image/jpeg;base64,${base64images[1]}',
+              }
+            }
+          ]}
         ],
         'max_tokens': 1000,
       };

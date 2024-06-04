@@ -4,7 +4,11 @@ import 'package:flutter_svg/svg.dart';
 ////brisik bgt warningnya anjir
 
 class SummaryScreen extends StatefulWidget {
-  const SummaryScreen({super.key});
+  final Map<String, dynamic> data;
+  const SummaryScreen({
+    super.key,
+    required this.data,
+  });
 
   @override
   SummaryState createState() => SummaryState();
@@ -13,51 +17,23 @@ class SummaryScreen extends StatefulWidget {
 class SummaryState extends State<SummaryScreen> {
   bool isExpanded = false;
   bool isSaved = false;
-
-  final Map<String, dynamic> data = {
-    "productName": "Häagen-Dazs Ice Cream",
-    "calories": {
-      "perServing": 330,
-      "perContainer": 870
-    },
-    "nutritionData": [
-      {"name": "Fats", "amount": "17g", "dv": "42% DV"},
-      {"name": "Carbohydrates", "amount": "40g", "dv": "16% DV"},
-      {"name": "Proteins", "amount": "4g", "dv": "4% DV"},
-    ],
-    "recommendations": [
-      "Limit portion size",
-      "Perfect for special treats, not daily snacks"
-    ],
-    "alternatives": [
-      "Greek Yogurt",
-      "Fruits",
-      "Smoothies"
-    ],
-    "allergens": ["milk"],
-    "warnings": [
-      {"name": "Saturated Fat", "amount": "17g", "dv": "42% DV"},
-      {"name": "Trans Fat", "amount": "1g", "dv": "5% DV"},
-    ],
-    "grade": 3
-  };
-
+  
   bool validateWarnings(List<dynamic> warnings) {
   return warnings.every((item) {
     return item is Map<String, dynamic> &&
            item.containsKey('name') &&
            item.containsKey('amount') &&
            item.containsKey('dv');
-  });
-}
+    });
+  }
 
   @override
 
   Widget build(BuildContext context) {
-    print("Data before building: $data"); //check data passing, nanti diremove
+    print("Data before building: ${widget.data}"); //check data passing, nanti diremove
 
     // Safe cast to List<dynamic>; validate it's not empty and has the correct structure
-    List<dynamic> warnings = data['warnings'] as List<dynamic>? ?? [];
+    List<dynamic> warnings = widget.data['warnings'] as List<dynamic>? ?? [];
     bool isValidWarnings = validateWarnings(warnings);
 
     return Scaffold(
@@ -94,7 +70,7 @@ class SummaryState extends State<SummaryScreen> {
               ),
               SizedBox(height: 19),
               Text(
-                data['productName'],
+                widget.data['productName'],
                 style: TextStyle(
                   fontFamily: 'Mulish',
                   fontSize: 24,
@@ -103,7 +79,7 @@ class SummaryState extends State<SummaryScreen> {
                 ),
               ),
               SizedBox(height: 30),
-              calorieRow(data['calories']['perServing'], data['calories']['perContainer']),
+              calorieRow(widget.data['calories']['perServing'], widget.data['calories']['perContainer']),
               if (isValidWarnings) 
                 Column(
                   children: [
@@ -112,12 +88,12 @@ class SummaryState extends State<SummaryScreen> {
                   ],
               ),
               SizedBox(height: 35),
-              allergenBox(context, data['allergens']),
+              allergenBox(context, widget.data['allergens']),
               SizedBox(height: 25),
               Divider(color: Colors.grey[300], thickness: 1),
               customCollapsibleNutritionDetails(),
               Divider(color: Colors.grey[300], thickness: 1),
-              gradeDisplay(data['grade']),
+              gradeDisplay(widget.data['grade']),
               Text(
                 'Based on highlighted nutrients and additional nutritional information',
                 style: TextStyle(
@@ -129,7 +105,7 @@ class SummaryState extends State<SummaryScreen> {
               ),
               SizedBox(height: 17),
               Divider(color: Colors.grey[300], thickness: 1),
-              showRecommendations(context, data['recommendations'], data['alternatives']),
+              showRecommendations(context, widget.data['recommendations'], widget.data['alternatives']),
             ],
           ),
         ),
@@ -383,7 +359,7 @@ class SummaryState extends State<SummaryScreen> {
         Visibility(
           visible: isExpanded,
           child: Column(
-            children: data['nutritionData'].map<Widget>((item) {
+            children: widget.data['nutritionData'].map<Widget>((item) {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 6.0),
                 child: Row(

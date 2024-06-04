@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:nutrifact/screens/loading_screen.dart';
 import 'package:nutrifact/screens/preview_screen.dart';
 import 'package:nutrifact/screens/sidebar.dart';
 import 'package:camera/camera.dart';
@@ -109,12 +110,21 @@ class _HomeScreenState extends State<HomeScreen> {
                   imagesList.add(file);
                 });
                 
+                showDialog(
+                  context: context, 
+                  builder: (BuildContext context) {
+                    return const LoadingScreen();
+                  },
+                );
+
                 Map<String, dynamic> data = await ApiService.sendMessage(
                   message: prompt,
                   modelId: 'gpt-4o',
                   imagesList: imagesList
                 );
-                
+
+                Navigator.pop(context);
+
                 Navigator.pushReplacement(
                   context, 
                   MaterialPageRoute(
@@ -123,6 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 );
+                
                 setState(() {
                   nutritionLabelConfirmed = false;
                   ingredientsLabelConfirmed = false;

@@ -6,6 +6,7 @@ import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
 import 'package:media_scanner/media_scanner.dart';
 import 'package:nutrifact/screens/summary_screen.dart';
+import 'package:nutrifact/services/api_service.dart';
 
 class HomeScreen extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -56,10 +57,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     final file = await saveImage(image);
-    
-    setState(() {
-      imagesList.add(file);
-    });
 
     if (mounted) {
       Navigator.push(
@@ -67,16 +64,25 @@ class _HomeScreenState extends State<HomeScreen> {
         MaterialPageRoute(
           builder: (context) => PreviewScreen(
             imageFile: file,
-            onConfirm: () {
+            onConfirm: () async {
               if (!nutritionLabelConfirmed) {
                 setState(() {
                   nutritionLabelConfirmed = true;
+                  imagesList.add(file);
                 });
                 Navigator.pop(context);
               } else if (!ingredientsLabelConfirmed) {
                 setState(() {
                   ingredientsLabelConfirmed = true;
+                  imagesList.add(file);
                 });
+                
+                await ApiService.sendMessage(
+                  message: 'Hello! can you tell me what picture this is',
+                  modelId: 'gpt-4o',
+                  imagesList: imagesList
+                );
+                
                 Navigator.pushReplacement(
                   context, 
                   MaterialPageRoute(
@@ -86,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(() {
                   nutritionLabelConfirmed = false;
                   ingredientsLabelConfirmed = false;
+                  imagesList.clear();
                 });
               }
             },

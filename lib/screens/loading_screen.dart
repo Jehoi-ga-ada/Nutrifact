@@ -1,7 +1,12 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
-  const LoadingScreen({super.key});
+  final List<File> imagesList;
+  const LoadingScreen({
+    super.key, 
+    required this.imagesList
+  });
 
   @override
   State<LoadingScreen> createState() => _LoadingScreenState();

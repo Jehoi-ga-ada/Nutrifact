@@ -44,6 +44,8 @@ dependencies:
   flutter_svg: ^2.0.10+1
   shared_preferences: ^2.2.3
   flutter_launcher_icons: "^0.13.1"
+  http: ^1.2.1
+  mime: ^1.0.5
 
 flutter_launcher_icons:
   android: "launcher_icon"

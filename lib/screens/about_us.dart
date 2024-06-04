@@ -10,6 +10,8 @@ void main() => runApp(MaterialApp(
 ));
 
 class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +58,7 @@ class AboutUsPage extends StatelessWidget {
             padding: EdgeInsets.only(left: 30),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 Text('We are:', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
                 Text('• Aretha Natalova', style: TextStyle(fontSize: 16)),
                 Text('• Axel Nino', style: TextStyle(fontSize: 16)),

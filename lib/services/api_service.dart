@@ -89,9 +89,7 @@ class ApiService{
         print("Response: $content");
       }
       Map<String, dynamic> jsonSummary = jsonDecode(content);
-
       return jsonSummary;
-
     } catch (e) {
       print("Error: $e");
       rethrow;

@@ -114,7 +114,7 @@ class SummaryState extends State<SummaryScreen> {
   }
 
 
-  Widget calorieRow(int calPerServing, int calPerContainer) { //nnti disini hrus bs diedit parameternya :1
+  Widget calorieRow(int calPerServing, int? calPerContainer) { //nnti disini hrus bs diedit parameternya :1
     calPerContainer = calPerContainer ?? calPerServing;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -196,7 +196,7 @@ class SummaryState extends State<SummaryScreen> {
 
   Widget nutritionWarnings(List<Map<String, dynamic>> warnings) {
     List<Widget> allWarnings = warnings.map((warning) {
-      return warningBox(warning['name'], warning['amount'], warning['dv']);
+      return warningBox(warning['name'], warning['amount']??'Null', warning['dv']??'Null');
     }).toList();
 
     // Dynamically splitting into rows if more than 3 warnings
@@ -289,7 +289,7 @@ class SummaryState extends State<SummaryScreen> {
     }
 
 
-  Widget allergenBox(BuildContext context, List<String> allergens) {
+  Widget allergenBox(BuildContext context, List<dynamic> allergens) {
     String text;
     Widget icon = SizedBox(width: 0);
     Color backgroundColor = Color.fromRGBO(255, 193, 103, 1);
@@ -369,14 +369,14 @@ class SummaryState extends State<SummaryScreen> {
                     Expanded(
                       flex: 3, // Adjust flex ratio for name column
                       child: Text(
-                        item['name']!,
+                        item['name']??'Null',
                         style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                     ),
                     Expanded(
                       flex: 2, // Adjust flex ratio for amount column to align amounts
                       child: Text(
-                        item['amount']!,
+                        item['amount']??'Null',
                         textAlign: TextAlign.center, // Center align text
                         style: TextStyle(fontSize: 15),
                       ),
@@ -384,7 +384,7 @@ class SummaryState extends State<SummaryScreen> {
                     Expanded(
                       flex: 2, // Adjust flex ratio for dv column
                       child: Text(
-                        item['dv']!,
+                        item['dv']??'Null',
                         textAlign: TextAlign.right, // Right align text
                         style: TextStyle(fontSize: 15, color: Colors.grey),
                       ),
@@ -448,7 +448,7 @@ class SummaryState extends State<SummaryScreen> {
     );
   }
   
-  Widget showRecommendations(BuildContext context, List<String> recommendations, List<String> alternatives) {
+  Widget showRecommendations(BuildContext context, List<dynamic> recommendations, List<dynamic> alternatives) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

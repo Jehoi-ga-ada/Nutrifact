@@ -4,6 +4,7 @@ import 'package:nutrifact/screens/profile.dart';
 import 'package:nutrifact/screens/profile_form.dart';
 import 'package:nutrifact/models/profile_model.dart';
 import 'package:nutrifact/utils/profile_storage.dart';
+import 'package:nutrifact/screens/about_us.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SideBar extends StatefulWidget {
@@ -37,7 +38,7 @@ class _SideBarState extends State<SideBar> {
     bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
     if (isFirstTime) {
-      if(mounted){
+      if (mounted) {
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => const ProfileForm()),
@@ -52,7 +53,7 @@ class _SideBarState extends State<SideBar> {
       );
     }
   }
-  
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -70,7 +71,7 @@ class _SideBarState extends State<SideBar> {
                   child: GestureDetector(
                     child: Padding(
                       padding: EdgeInsets.only(
-                        top: 0.04 * height, 
+                        top: 0.04 * height,
                         bottom: 0.04 * height,
                       ),
                       child: Image.asset(
@@ -82,13 +83,13 @@ class _SideBarState extends State<SideBar> {
                     onTap: () => Navigator.pop(context),
                   ),
                 ),
-                
+
                 Container(
                   color: Colors.transparent,
                   padding: EdgeInsets.only(
-                    top: 0.02*height,
-                    bottom: 0.01*height, 
-                    left: 0.04*width
+                    top: 0.02 * height,
+                    bottom: 0.01 * height,
+                    left: 0.04 * width
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +126,7 @@ class _SideBarState extends State<SideBar> {
                   ),
                 ),
 
-                SizedBox(height: 0.01*height),
+                SizedBox(height: 0.01 * height),
 
                 GestureDetector(
                   onTap:() => goToProfile(),
@@ -141,12 +142,18 @@ class _SideBarState extends State<SideBar> {
                   ),
                 ),
                 
-                SizedBox(height: 0.01*height),
+                SizedBox(height: 0.01 * height),
 
                 GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AboutUsPage()),
+                    );
+                  },
                   child: const ListTile(
                     title: Text(
-                      "History",
+                      "About Us",
                       style: TextStyle(
                         color: Color.fromARGB(255, 64, 64, 64),
                         fontSize: 18,
@@ -155,9 +162,9 @@ class _SideBarState extends State<SideBar> {
                     ),
                   ),
                 ),
-                
-                SizedBox(height: 0.01*height),
-                
+
+                SizedBox(height: 0.01 * height),
+
                 GestureDetector(
                   child: const ListTile(
                     title: Text(
@@ -171,12 +178,12 @@ class _SideBarState extends State<SideBar> {
                   ),
                 ),
 
-                SizedBox(height: 0.01*height),
+                SizedBox(height: 0.01 * height),
 
                 GestureDetector(
                   child: const ListTile(
                     title: Text(
-                      "About Us",
+                      "History",
                       style: TextStyle(
                         color: Color.fromARGB(255, 64, 64, 64),
                         fontSize: 18,
@@ -185,7 +192,6 @@ class _SideBarState extends State<SideBar> {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -195,19 +201,19 @@ class _SideBarState extends State<SideBar> {
               alignment: Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.only(
-                  bottom: 0.02*height, 
-                  right: 0.035*width
+                  bottom: 0.02 * height,
+                  right: 0.035 * width
                 ),
                 child: Image.asset(
-                "assets/sidebar/watermark.png",
-                height: 50,
-                width: 127,
+                  "assets/sidebar/watermark.png",
+                  height: 50,
+                  width: 127,
                 ),
               ),
             )
           )
         ],
-      ) 
+      )
     );
   }
 }

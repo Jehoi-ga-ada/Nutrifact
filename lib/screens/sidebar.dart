@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 // import 'package:is_first_run/is_first_run.dart';
 import 'package:nutrifact/screens/profile.dart';
 import 'package:nutrifact/screens/profile_form.dart';
-import 'package:nutrifact/screens/about_us.dart'; // Make sure this path is correct
+import 'package:nutrifact/models/profile_model.dart';
+import 'package:nutrifact/utils/profile_storage.dart';
+import 'package:nutrifact/screens/about_us.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SideBar extends StatefulWidget {
@@ -13,7 +15,25 @@ class SideBar extends StatefulWidget {
 }
 
 class _SideBarState extends State<SideBar> {
+  Profile? profile;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProfile();
+  }
+
+  Future<void> _loadProfile() async {
+    final ProfileStorage storage = ProfileStorage();
+    Profile loadedProfile = await storage.readProfile();
+    setState(() {
+      profile = loadedProfile;
+    });
+  }
+
   Future<void> goToProfile() async {
+    // final ProfileStorage storage = ProfileStorage();
+    // Profile profile = await storage.readProfile();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
@@ -27,7 +47,9 @@ class _SideBarState extends State<SideBar> {
     } else if (mounted) {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const ProfileScreen()),
+        MaterialPageRoute(builder: (context) =>  ProfileScreen(
+          profile: profile!,
+          )),
       );
     }
   }
@@ -75,20 +97,24 @@ class _SideBarState extends State<SideBar> {
                       CircleAvatar(
                         radius: 45, // half of currentAccountPictureSize
                         backgroundColor: Colors.transparent,
-                        child: ClipOval(
-                          child: Image.network(
-                            'https://i.pinimg.com/736x/86/d3/e2/86d3e24b8647e52cc6c815a52ff6e445.jpg',
-                            fit: BoxFit.cover,
-                            width: 90, // currentAccountPictureSize.width
-                            height: 90, // currentAccountPictureSize.height
-                          ),
-                        ),
+                        // child: ClipOval(
+                        //   child: Image.network(
+                        //     'https://i.pinimg.com/736x/86/d3/e2/86d3e24b8647e52cc6c815a52ff6e445.jpg',
+                        //     fit: BoxFit.cover,
+                        //     width: 90, // currentAccountPictureSize.width
+                        //     height: 90, // currentAccountPictureSize.height
+                        //   ),
+                        // ),
+                        child: Text(profile?.name[0] ?? 'G',
+                          style: const TextStyle(
+                              fontSize: 40,
+                              color: Color.fromRGBO(187, 191, 194, 1))), 
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 10, top: 5),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10, top: 5),
                         child: Text(
-                          "User Masbro",
-                          style: TextStyle(
+                          profile?.name ?? 'Guest',
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 22,
                             fontFamily: 'Mulish',

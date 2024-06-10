@@ -310,8 +310,7 @@ class SummaryState extends State<SummaryScreen> {
 
     return Center(
       child: Container(
-        height: 35,
-        padding: EdgeInsets.symmetric(horizontal: 10),  // Padding for text and icon
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),  // Padding for text and icon
         width: MediaQuery.of(context).size.width * 0.8,  // 80% of screen width
         decoration: BoxDecoration(
           color: backgroundColor,  // Dynamic background color
